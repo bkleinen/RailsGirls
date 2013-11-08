@@ -1,0 +1,43 @@
+<h1>Listing registrations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+      <th>Twitter</th>
+      <th>Programming</th>
+      <th>Railsexperience</th>
+      <th>Motivation</th>
+      <th>Os</th>
+      <th>Specialdiat</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @registrations.each do |registration| %>
+      <tr>
+        <td><%= registration.firstname %></td>
+        <td><%= registration.lastname %></td>
+        <td><%= registration.email %></td>
+        <td><%= registration.twitter %></td>
+        <td><%= registration.programming %></td>
+        <td><%= registration.railsexperience %></td>
+        <td><%= registration.motivation %></td>
+        <td><%= registration.os %></td>
+        <td><%= registration.specialdiat %></td>
+        <td><%= link_to 'Show', registration %></td>
+        <td><%= link_to 'Edit', edit_registration_path(registration) %></td>
+        <td><%= link_to 'Destroy', registration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Registration', new_registration_path %>

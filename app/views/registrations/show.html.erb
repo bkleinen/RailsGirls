@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Firstname:</strong>
+  <%= @registration.firstname %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @registration.lastname %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @registration.email %>
+</p>
+
+<p>
+  <strong>Twitter:</strong>
+  <%= @registration.twitter %>
+</p>
+
+<p>
+  <strong>Programming:</strong>
+  <%= @registration.programming %>
+</p>
+
+<p>
+  <strong>Railsexperience:</strong>
+  <%= @registration.railsexperience %>
+</p>
+
+<p>
+  <strong>Motivation:</strong>
+  <%= @registration.motivation %>
+</p>
+
+<p>
+  <strong>Os:</strong>
+  <%= @registration.os %>
+</p>
+
+<p>
+  <strong>Specialdiat:</strong>
+  <%= @registration.specialdiat %>
+</p>
+
+<%= link_to 'Edit', edit_registration_path(@registration) %> |
+<%= link_to 'Back', registrations_path %>
