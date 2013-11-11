@@ -25,16 +25,12 @@ class RegistrationsController < ApplicationController
   # POST /registrations.json
   def create
     @registration = Registration.new(registration_params)
-
-    respond_to do |format|
       if @registration.save
-        format.html { redirect_to @registration, notice: 'Registration was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @registration }
+        flash[:success] = "Your registration was successful"
+        redirect_to @registration
       else
-        format.html { render action: 'new' }
-        format.json { render json: @registration.errors, status: :unprocessable_entity }
+        render 'new'
       end
-    end
   end
 
   # PATCH/PUT /registrations/1
@@ -42,7 +38,7 @@ class RegistrationsController < ApplicationController
   def update
     respond_to do |format|
       if @registration.update(registration_params)
-        format.html { redirect_to @registration, notice: 'Registration was successfully updated.' }
+        flash[:success] = "The update was successful"
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

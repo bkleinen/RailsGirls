@@ -1,5 +1,39 @@
+<% provide(:title, 'New registration') %>
 <h1>New registration</h1>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@registration) do |f| %>
+      <%= render 'shared/error_messages' %>
+      <%= f.label :firstname, 'Firstname*' %>
+      <%= f.text_field :firstname %>
 
+      <%= f.label :lastname, 'Lastname*'  %>
+      <%= f.text_field :lastname %>
+
+      <%= f.label :email, 'Email*'  %>
+      <%= f.text_field :email %>
+
+      <%= f.label :twitter, 'Twitter'  %>
+      <%= f.text_field :twitter %>
+
+      <%= f.label :programming, 'Programming experience*'  %>
+      <%= f.text_area :programming %>
+
+      <%= f.label :railsexperience, 'Rails experience*'  %>
+      <%= f.text_area :railsexperience %>
+
+      <%= f.label :motivation, 'Motivation'  %>
+      <%= f.text_area :motivation %>
+
+      <%= f.label :os, 'Operating System you use*'  %>
+      <%= f.text_field :os %>
+
+      <%= f.label :specialdiat, 'Special diat'  %>
+      <%= f.text_field :specialdiat %>
+
+      <%= f.submit "Submit my registration", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
 <%= link_to 'Back', registrations_path %>
