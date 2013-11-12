@@ -4,6 +4,7 @@
 <table>
   <thead>
     <tr>
+      <th>Profile Image</th>
       <th>Firstname</th>
       <th>Lastname</th>
       <th>Email</th>
@@ -22,6 +23,7 @@
   <tbody>
     <% @registrations.each do |registration| %>
       <tr>
+        <td><%= gravatar_for user, size: 52 %></td>
         <td><%= registration.firstname %></td>
         <td><%= registration.lastname %></td>
         <td><%= registration.email %></td>
