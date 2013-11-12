@@ -8,4 +8,13 @@ class Registration < ActiveRecord::Base
     validates :programming,  presence: true
     validates :railsexperience,  presence: true
     validates :os,  presence: true
+
+ 	def self.inherited(child)
+	  child.instance_eval do
+	    def model_name
+	      Registration.model_name
+	    end
+	  end
+	  super
+	end
 end

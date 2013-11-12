@@ -3,9 +3,9 @@
     <div class="container">
       <nav>
         <ul class="nav pull-right">
+<<<<<<< HEAD
             <% if signed_in? %>
-              <li><%= link_to "Show Participant Registrations",    registrations_path(:type=>"participant") %></li>
-              <li><%= link_to "Show Coach Registrations",    registrations_path(:type=>"coach") %></li>
+            <li><%= link_to "Show Registrations", registrations_path %></li>
               <li><%= link_to "Profile", current_user %></li>
               <li>
                 <%= link_to "Sign out", signout_path, method: "delete" %>
@@ -13,6 +13,11 @@
           <% else %>
              <li><%= link_to "Register",    new_registration_path %></li>
           <% end %>
+=======
+          <li><%= link_to "Register",    new_registration_path %></li>
+          <li><%= link_to "Show Participant Registrations",    registrations_path(:type=>"participant") %></li>
+          <li><%= link_to "Show Coach Registrations",    registrations_path(:type=>"coach") %></li>
+>>>>>>> af0c63c11a428633991ab0476f2a6da3ee12a0bc
         </ul>
       </nav>
     </div>
