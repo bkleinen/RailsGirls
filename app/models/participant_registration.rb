@@ -1,0 +1,3 @@
+class ParticipantRegistration < Registration
+	
+end

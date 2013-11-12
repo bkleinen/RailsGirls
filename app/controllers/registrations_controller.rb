@@ -4,7 +4,11 @@ class RegistrationsController < ApplicationController
   # GET /registrations
   # GET /registrations.json
   def index
-    @registrations = Registration.all
+    if(index_params['type'] == 'coach')
+      @registrations = CoachRegistration.all
+    elsif(index_params['type'] == 'participant')
+      @registrations = ParticipantRegistration.all
+    end
   end
 
   # GET /registrations/1
@@ -14,7 +18,7 @@ class RegistrationsController < ApplicationController
 
   # GET /registrations/new
   def new
-    @registration = Registration.new
+    @registration = ParticipantRegistration.new
   end
 
   # GET /registrations/1/edit
@@ -24,7 +28,7 @@ class RegistrationsController < ApplicationController
   # POST /registrations
   # POST /registrations.json
   def create
-    @registration = Registration.new(registration_params)
+    @registration = ParticipantRegistration.new(registration_params)
       if @registration.save
         flash[:success] = "Your registration was successful"
         redirect_to @registration
@@ -60,11 +64,16 @@ class RegistrationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_registration
-      @registration = Registration.find(params[:id])
+      @registration = ParticipantRegistration.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registration_params
-      params.require(:registration).permit(:firstname, :lastname, :email, :twitter, :programming, :railsexperience, :motivation, :os, :specialdiat)
+      params.require(:registration).permit(:firstname, :lastname, :email, :twitter, :programming, :railsexperience, :motivation, :os, :specialdiet)
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def index_params
+      params.permit(:type)
     end
 end

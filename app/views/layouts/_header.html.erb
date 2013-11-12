@@ -4,7 +4,8 @@
       <nav>
         <ul class="nav pull-right">
           <li><%= link_to "Register",    new_registration_path %></li>
-          <li><%= link_to "Show Registrations",    registrations_path %></li>
+          <li><%= link_to "Show Participant Registrations",    registrations_path(:type=>"participant") %></li>
+          <li><%= link_to "Show Coach Registrations",    registrations_path(:type=>"coach") %></li>
         </ul>
       </nav>
     </div>

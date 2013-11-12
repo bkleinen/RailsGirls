@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20131108152820) do
 
   create_table "registrations", force: true do |t|
+    t.string   "type"
     t.string   "firstname"
     t.string   "lastname"
     t.string   "email"
@@ -22,7 +23,7 @@ ActiveRecord::Schema.define(version: 20131108152820) do
     t.text     "railsexperience"
     t.text     "motivation"
     t.string   "os"
-    t.string   "specialdiat"
+    t.string   "specialdiet"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
