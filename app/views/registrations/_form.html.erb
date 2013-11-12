@@ -1,53 +1,35 @@
 <%= form_for(@registration) do |f| %>
-  <% if @registration.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@registration.errors.count, "error") %> prohibited this registration from being saved:</h2>
 
-      <ul>
-      <% @registration.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <%= form_for(@registration) do |f| %>
+      <%= render 'shared/error_messages' %>
+      <%= f.label :firstname, 'Firstname*' %>
+      <%= f.text_field :firstname %>
 
-  <div class="field">
-    <%= f.label :firstname %><br>
-    <%= f.text_field :firstname %>
-  </div>
-  <div class="field">
-    <%= f.label :lastname %><br>
-    <%= f.text_field :lastname %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :twitter %><br>
-    <%= f.text_field :twitter %>
-  </div>
-  <div class="field">
-    <%= f.label :programming %><br>
-    <%= f.text_area :programming %>
-  </div>
-  <div class="field">
-    <%= f.label :railsexperience %><br>
-    <%= f.text_area :railsexperience %>
-  </div>
-  <div class="field">
-    <%= f.label :motivation %><br>
-    <%= f.text_area :motivation %>
-  </div>
-  <div class="field">
-    <%= f.label :os %><br>
-    <%= f.text_field :os %>
-  </div>
-  <div class="field">
-    <%= f.label :specialdiet %><br>
-    <%= f.text_field :specialdiet %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+      <%= f.label :lastname, 'Lastname*'  %>
+      <%= f.text_field :lastname %>
+
+      <%= f.label :email, 'Email*'  %>
+      <%= f.text_field :email %>
+
+      <%= f.label :twitter, 'Twitter'  %>
+      <%= f.text_field :twitter %>
+
+      <%= f.label :programming, 'Programming experience*'  %>
+      <%= f.text_area :programming %>
+
+      <%= f.label :railsexperience, 'Rails experience*'  %>
+      <%= f.text_area :railsexperience %>
+
+      <%= f.label :motivation, 'Motivation'  %>
+      <%= f.text_area :motivation %>
+
+      <%= f.label :os, 'Operating System you use*'  %>
+      <%= f.text_field :os %>
+
+      <%= f.label :specialdiet, 'Special diet'  %>
+      <%= f.text_field :specialdiet %>
+
+      <%= f.hidden_field :type %>
+      <%= f.submit "Submit my registration", class: "btn btn-large btn-primary" %>
+    <% end %>
 <% end %>
