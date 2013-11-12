@@ -4,9 +4,9 @@ class RegistrationsController < ApplicationController
   # GET /registrations
   # GET /registrations.json
   def index
-    if(index_params['type'] == 'coach')
+    if(index_params[:type] == 'coach')
       @registrations = CoachRegistration.all
-    elsif(index_params['type'] == 'participant')
+    else
       @registrations = ParticipantRegistration.all
     end
   end
@@ -19,6 +19,10 @@ class RegistrationsController < ApplicationController
   # GET /registrations/new
   def new
     @registration = ParticipantRegistration.new
+  end
+
+  def new_coach
+    @registration = CoachRegistration.new
   end
 
   # GET /registrations/1/edit
