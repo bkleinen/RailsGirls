@@ -5,7 +5,7 @@ Railsgirls::Application.routes.draw do
   match '/registrations/new_coach', to: 'registrations#new_coach',  via: 'get', as: :new_coach
   resources :registrations
   resources :users
-  match '/admin',  to: 'sessions#new',         via: 'get'
+  match '/admin',  to: 'sessions#new',         via: 'get', as: :admin
   match '/signout', to: 'sessions#destroy',     via: 'delete'
 
 

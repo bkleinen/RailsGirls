@@ -1,5 +1,6 @@
 class RegistrationsController < ApplicationController
   before_action :set_registration, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:index, :edit, :update]
 
   # GET /registrations
   # GET /registrations.json
@@ -76,5 +77,16 @@ class RegistrationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def index_params
       params.permit(:type)
+    end
+
+    # Before filters
+    def signed_in_user
+      store_location
+      redirect_to admin_path, notice: "Only for Admins available! Please sign in." unless signed_in?
+    end
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
     end
 end
