@@ -23,7 +23,7 @@
   <tbody>
     <% @registrations.each do |registration| %>
       <tr>
-        <td><%= gravatar_for user, size: 52 %></td>
+        <td><%= gravatar_for registration %></td>
         <td><%= registration.firstname %></td>
         <td><%= registration.lastname %></td>
         <td><%= registration.email %></td>

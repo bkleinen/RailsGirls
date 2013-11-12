@@ -44,14 +44,11 @@ class RegistrationsController < ApplicationController
   # PATCH/PUT /registrations/1
   # PATCH/PUT /registrations/1.json
   def update
-    respond_to do |format|
-      if @registration.update(registration_params)
-        flash[:success] = "The update was successful"
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @registration.errors, status: :unprocessable_entity }
-      end
+    if @registration.update(registration_params)
+      flash[:success] = "The update was successful"
+      redirect_to @registration
+    else
+      render action: 'edit'  
     end
   end
 
