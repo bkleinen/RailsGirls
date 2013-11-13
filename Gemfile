@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
-#ruby-gemset=railstutorial_rails_4_0
 
 gem 'rails', '4.0.1'
 gem 'bootstrap-sass'
@@ -34,4 +33,9 @@ group :test do
 
   # Uncomment this line on OS X.
   gem 'growl', '1.0.3'
+end
+
+group :production do
+  gem 'pg', '0.15.1'
+  gem 'rails_12factor', '0.0.2'
 end
