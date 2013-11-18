@@ -7,6 +7,7 @@ Railsgirls::Application.routes.draw do
   resources :users
   match '/admin',  to: 'sessions#new',         via: 'get', as: :admin
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+  match '/registrations/success', to: 'registrations#success',  via: 'get', as: :success
 
 
   # The priority is based upon order of creation: first created -> highest priority.
