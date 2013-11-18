@@ -36,7 +36,7 @@ class RegistrationsController < ApplicationController
     @registration = Registration.new(registration_params)
       if @registration.save
         flash[:success] = "Your registration was successful"
-        redirect_to success_path
+        redirect_to success_reg_path
       else
         render 'new'
       end
