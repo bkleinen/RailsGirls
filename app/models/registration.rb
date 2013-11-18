@@ -6,9 +6,7 @@ class Registration < ActiveRecord::Base
 	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 
-    validates :programming, :language, :last_attended, :coding_level, :os, :other_languages, :project, :group, :join_group, presence: true
-    validates :railsexperience,  presence: true
-    validates :os,  presence: true
+    validates :language, :last_attended, :coding_level, :os, :other_languages, :join_group, presence: true
 
  	def self.inherited(child)
 	  child.instance_eval do
