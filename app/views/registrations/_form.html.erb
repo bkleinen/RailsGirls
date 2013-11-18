@@ -11,23 +11,42 @@
       <%= f.label :email, 'Email*'  %>
       <%= f.text_field :email %>
 
-      <%= f.label :twitter, 'Twitter'  %>
-      <%= f.text_field :twitter %>
 
-      <%= f.label :programming, 'Programming experience*'  %>
-      <%= f.text_area :programming %>
 
-      <%= f.label :railsexperience, 'Rails experience*'  %>
-      <%= f.text_area :railsexperience %>
+      <%= f.label :language, 'Language*'  %>
+      <%= f.text_field :language %>
 
-      <%= f.label :motivation, 'Motivation'  %>
-      <%= f.text_area :motivation %>
+      <%= f.label :last_attended, 'Last Attended*'  %>
+      <%= f.text_field :last_attended %>
+
+      <%= f.label :coding_level, 'Coding Level*'  %>
+      <%= f.number_field :coding_level %>
 
       <%= f.label :os, 'Operating System you use*'  %>
       <%= f.text_field :os %>
 
-      <%= f.label :specialdiet, 'Special diet'  %>
-      <%= f.text_field :specialdiet %>
+      <%= f.label :other_languages, 'Other Languages*'  %>
+      <%= f.text_area :other_languages %>
+
+      <%= f.label :project, 'Any Projects*'  %>
+      <%= f.check_box :project %>
+
+
+
+      <%= f.label :idea, 'Ideas*'  %>
+      <%= f.text_area :idea %>
+
+      <%= f.label :want_learn, 'Want to learn*'  %>
+      <%= f.text_area :want_learn %>
+
+      <%= f.label :group, 'Groups?*'  %>
+      <%= f.check_box :group %>
+
+      <%= f.label :join_group, 'Join Group?*'  %>
+      <%= f.text_field :join_group %>
+
+      <%= f.label :notes, 'Notes'  %>
+      <%= f.text_field :notes %>
 
       <%= f.hidden_field :type %>
       <%= f.submit "Submit my registration", class: "btn btn-large btn-primary" %>
