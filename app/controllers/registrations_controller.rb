@@ -1,6 +1,6 @@
 class RegistrationsController < ApplicationController
   before_action :set_registration, only: [:show, :edit, :update, :destroy]
-  before_action :signed_in_user, only: [:index, :edit, :update]
+  before_action :signed_in_user, only: [:index, :edit, :update, :show]
 
   # GET /registrations
   # GET /registrations.json
@@ -36,7 +36,7 @@ class RegistrationsController < ApplicationController
     @registration = Registration.new(registration_params)
       if @registration.save
         flash[:success] = "Your registration was successful"
-        redirect_to @registration
+        redirect_to success_path
       else
         render 'new'
       end
