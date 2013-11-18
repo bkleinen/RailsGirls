@@ -9,6 +9,24 @@
 <% end %>
 registration</h1>
 
+      t.string :firstname
+      t.string :lastname
+      t.string :email
+
+      t.string :language
+      t.string :last_attended
+      t.integer :coding_level
+      t.string :os
+      t.text :other_languages
+
+      t.boolean :project
+      t.text :idea
+      t.text :want_learn
+      t.boolean :group
+      t.string :join_group
+
+      t.string :notes
+
 <table>
   <thead>
     <tr>
@@ -16,15 +34,17 @@ registration</h1>
       <th>Firstname</th>
       <th>Lastname</th>
       <th>Email</th>
-      <th>Twitter</th>
-      <th>Programming</th>
-      <th>Railsexperience</th>
-      <th>Motivation</th>
+      <th>Language</th>
+      <th>Last attended</th>
+      <th>Coding level</th>
       <th>Os</th>
-      <th>Specialdiet</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Other languages</th>
+      <th>Project</th>
+      <th>Idea</th>
+      <th>Want to learn</th>
+      <th>Group</th>
+      <th>Join Group</th>
+      <th>Notes</th>
     </tr>
   </thead>
 
@@ -35,12 +55,17 @@ registration</h1>
         <td><%= registration.firstname %></td>
         <td><%= registration.lastname %></td>
         <td><%= registration.email %></td>
-        <td><%= registration.twitter %></td>
-        <td><%= registration.programming %></td>
-        <td><%= registration.railsexperience %></td>
-        <td><%= registration.motivation %></td>
+        <td><%= registration.language %></td>
+        <td><%= registration.last_attended %></td>
+        <td><%= registration.coding_level %></td>
         <td><%= registration.os %></td>
-        <td><%= registration.specialdiet %></td>
+        <td><%= registration.other_languages %></td>
+        <td><%= registration.project %></td>
+        <td><%= registration.idea %></td>
+        <td><%= registration.want_learn %></td>
+        <td><%= registration.group %></td>
+        <td><%= registration.join_group %></td>
+        <td><%= registration.notes %></td>
         <td><%= link_to 'Show', registration %></td>
         <td><%= link_to 'Edit', edit_registration_path(registration) %></td>
         <td><%= link_to 'Destroy', registration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
