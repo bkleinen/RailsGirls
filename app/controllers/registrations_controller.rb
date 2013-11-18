@@ -33,7 +33,7 @@ class RegistrationsController < ApplicationController
   # POST /registrations
   # POST /registrations.json
   def create
-    @registration = ParticipantRegistration.new(registration_params)
+    @registration = Registration.new(registration_params)
       if @registration.save
         flash[:success] = "Your registration was successful"
         redirect_to @registration
@@ -66,12 +66,12 @@ class RegistrationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_registration
-      @registration = ParticipantRegistration.find(params[:id])
+      @registration = Registration.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registration_params
-      params.require(:registration).permit(:firstname, :lastname, :email, :twitter, :programming, :railsexperience, :motivation, :os, :specialdiet)
+      params.require(:registration).permit(:firstname, :lastname, :email, :twitter, :programming, :railsexperience, :motivation, :os, :specialdiet, :type)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

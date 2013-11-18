@@ -1,5 +1,11 @@
 <% provide(:title, 'Listing registrations') %>
-<h1>Listing registrations</h1>
+<h1>Listing 
+<% if @registrations.first.type == 'CoachRegistration' %>
+  Coach
+<% else %>
+  Participant
+<% end %>
+registration</h1>
 
 <table>
   <thead>
