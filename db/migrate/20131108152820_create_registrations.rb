@@ -6,12 +6,20 @@ class CreateRegistrations < ActiveRecord::Migration
       t.string :firstname
       t.string :lastname
       t.string :email
-      t.string :twitter
-      t.text :programming
-      t.text :railsexperience
-      t.text :motivation
+
+      t.string :language
+      t.string :last_attended
+      t.integer :coding_level
       t.string :os
-      t.string :specialdiet
+      t.text :other_languages
+
+      t.boolean :project
+      t.text :idea
+      t.text :want_learn
+      t.boolean :group
+      t.string :join_group
+
+      t.string :notes
 
       t.timestamps
     end

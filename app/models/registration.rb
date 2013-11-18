@@ -5,7 +5,8 @@ class Registration < ActiveRecord::Base
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-    validates :programming,  presence: true
+
+    validates :programming, :language, :last_attended, :coding_level, :os, :other_languages, :project, :group, :join_group, presence: true
     validates :railsexperience,  presence: true
     validates :os,  presence: true
 

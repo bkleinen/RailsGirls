@@ -58,7 +58,7 @@ class RegistrationsController < ApplicationController
   def destroy
     @registration.destroy
     respond_to do |format|
-      format.html { redirect_to registrations_url }
+      format.html { redirect_to request.referer }
       format.json { head :no_content }
     end
   end
@@ -71,7 +71,7 @@ class RegistrationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registration_params
-      params.require(:registration).permit(:firstname, :lastname, :email, :twitter, :programming, :railsexperience, :motivation, :os, :specialdiet, :type)
+      params.require(:registration).permit(:firstname, :lastname, :email, :language, :last_attended, :coding_level, :os, :other_languages, :project, :idea, :want_learn, :group, :join_group, :notes)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
