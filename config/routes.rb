@@ -1,10 +1,14 @@
 Railsgirls::Application.routes.draw do
+  resources :registrations
+
+  resources :forms
+
+  resources :workshops
+
   get "static_pages/home"
   root  'static_pages#home'
   resources :sessions, only: [:new, :create, :destroy]
-  match '/registrations/new_coach', to: 'registrations#new_coach',  via: 'get', as: :new_coach
-  resources :registrations
-  resources :users
+#  match '/registrations/new_coach', to: 'registrations#new_coach',  via: 'get', as: :new_coach  resources :users
   match '/admin',  to: 'sessions#new',         via: 'get', as: :admin
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/success_reg', to: 'registrations#success_reg',  via: 'get', as: :success_reg

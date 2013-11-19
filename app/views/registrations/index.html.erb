@@ -1,71 +1,17 @@
-<% provide(:title, 'Listing registrations') %>
-<h1>Listing 
-<% if @registrations.first %>
-  <% if @registrations.first.type == 'CoachRegistration' %>
-    Coach
-  <% else %>
-    Participant
-  <% end %>
-<% end %>
-registration</h1>
-
-      t.string :firstname
-      t.string :lastname
-      t.string :email
-
-      t.string :language
-      t.string :last_attended
-      t.integer :coding_level
-      t.string :os
-      t.text :other_languages
-
-      t.boolean :project
-      t.text :idea
-      t.text :want_learn
-      t.boolean :group
-      t.string :join_group
-
-      t.string :notes
+<h1>Listing registrations</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Profile Image</th>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Email</th>
-      <th>Language</th>
-      <th>Last attended</th>
-      <th>Coding level</th>
-      <th>Os</th>
-      <th>Other languages</th>
-      <th>Project</th>
-      <th>Idea</th>
-      <th>Want to learn</th>
-      <th>Group</th>
-      <th>Join Group</th>
-      <th>Notes</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @registrations.each do |registration| %>
       <tr>
-        <td><%= gravatar_for registration %></td>
-        <td><%= registration.firstname %></td>
-        <td><%= registration.lastname %></td>
-        <td><%= registration.email %></td>
-        <td><%= registration.language %></td>
-        <td><%= registration.last_attended %></td>
-        <td><%= registration.coding_level %></td>
-        <td><%= registration.os %></td>
-        <td><%= registration.other_languages %></td>
-        <td><%= registration.project %></td>
-        <td><%= registration.idea %></td>
-        <td><%= registration.want_learn %></td>
-        <td><%= registration.group %></td>
-        <td><%= registration.join_group %></td>
-        <td><%= registration.notes %></td>
         <td><%= link_to 'Show', registration %></td>
         <td><%= link_to 'Edit', edit_registration_path(registration) %></td>
         <td><%= link_to 'Destroy', registration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -74,7 +20,6 @@ registration</h1>
   </tbody>
 </table>
 
+<br>
 
 <%= link_to 'New Registration', new_registration_path %>
-<br>
-<%= link_to 'New Coach Registration', new_coach_path %>

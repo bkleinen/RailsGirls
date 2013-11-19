@@ -11,24 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131112200640) do
+ActiveRecord::Schema.define(version: 20131119135314) do
+
+  create_table "fields", force: true do |t|
+    t.string   "value"
+    t.integer  "registration_id"
+    t.integer  "metafield_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forms", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "metafields", force: true do |t|
+    t.string   "type"
+    t.string   "values"
+    t.string   "title"
+    t.integer  "order"
+    t.integer  "form_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "registrations", force: true do |t|
-    t.string   "type"
-    t.string   "firstname"
-    t.string   "lastname"
-    t.string   "email"
-    t.string   "language"
-    t.string   "last_attended"
-    t.integer  "coding_level"
-    t.string   "os"
-    t.text     "other_languages"
-    t.boolean  "project"
-    t.text     "idea"
-    t.text     "want_learn"
-    t.boolean  "group"
-    t.string   "join_group"
-    t.string   "notes"
+    t.integer  "form_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -43,5 +52,16 @@ ActiveRecord::Schema.define(version: 20131112200640) do
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+  create_table "workshops", force: true do |t|
+    t.string   "name"
+    t.date     "date"
+    t.text     "description"
+    t.text     "venue"
+    t.integer  "participant_form_id"
+    t.integer  "coach_form_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

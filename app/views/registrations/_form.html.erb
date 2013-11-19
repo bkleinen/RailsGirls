@@ -1,54 +1,17 @@
 <%= form_for(@registration) do |f| %>
+  <% if @registration.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@registration.errors.count, "error") %> prohibited this registration from being saved:</h2>
 
-    <%= form_for(@registration) do |f| %>
-      <%= render 'shared/error_messages' %>
-      <%= f.label :firstname, 'Firstname*' %>
-      <%= f.text_field :firstname %>
+      <ul>
+      <% @registration.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-      <%= f.label :lastname, 'Lastname*'  %>
-      <%= f.text_field :lastname %>
-
-      <%= f.label :email, 'Email*'  %>
-      <%= f.text_field :email %>
-
-
-
-      <%= f.label :language, 'Language*'  %>
-      <%= f.text_field :language %>
-
-      <%= f.label :last_attended, 'Last Attended*'  %>
-      <%= f.text_field :last_attended %>
-
-      <%= f.label :coding_level, 'Coding Level*'  %>
-      <%= f.number_field :coding_level %>
-
-      <%= f.label :os, 'Operating System you use*'  %>
-      <%= f.text_field :os %>
-
-      <%= f.label :other_languages, 'Other Languages*'  %>
-      <%= f.text_area :other_languages %>
-
-      <%= f.label :project, 'Any Projects*'  %>
-      <%= f.check_box :project %>
-
-
-
-      <%= f.label :idea, 'Ideas*'  %>
-      <%= f.text_area :idea %>
-
-      <%= f.label :want_learn, 'Want to learn*'  %>
-      <%= f.text_area :want_learn %>
-
-      <%= f.label :group, 'Groups?*'  %>
-      <%= f.check_box :group %>
-
-      <%= f.label :join_group, 'Join Group?*'  %>
-      <%= f.text_field :join_group %>
-
-      <%= f.label :notes, 'Notes'  %>
-      <%= f.text_field :notes %>
-
-      <%= f.hidden_field :type %>
-      <%= f.submit "Submit my registration", class: "btn btn-large btn-primary" %>
-    <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>

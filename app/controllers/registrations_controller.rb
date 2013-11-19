@@ -1,15 +1,10 @@
 class RegistrationsController < ApplicationController
   before_action :set_registration, only: [:show, :edit, :update, :destroy]
-  before_action :signed_in_user, only: [:index, :edit, :update, :show]
 
   # GET /registrations
   # GET /registrations.json
   def index
-    if(index_params[:type] == 'coach')
-      @registrations = CoachRegistration.all
-    else
-      @registrations = ParticipantRegistration.all
-    end
+    @registrations = Registration.all
   end
 
   # GET /registrations/1
@@ -19,11 +14,7 @@ class RegistrationsController < ApplicationController
 
   # GET /registrations/new
   def new
-    @registration = ParticipantRegistration.new
-  end
-
-  def new_coach
-    @registration = CoachRegistration.new
+    @registration = Registration.new
   end
 
   # GET /registrations/1/edit
@@ -34,22 +25,29 @@ class RegistrationsController < ApplicationController
   # POST /registrations.json
   def create
     @registration = Registration.new(registration_params)
+
+    respond_to do |format|
       if @registration.save
-        flash[:success] = "Your registration was successful"
-        redirect_to success_reg_path
+        format.html { redirect_to @registration, notice: 'Registration was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @registration }
       else
-        render 'new'
+        format.html { render action: 'new' }
+        format.json { render json: @registration.errors, status: :unprocessable_entity }
       end
+    end
   end
 
   # PATCH/PUT /registrations/1
   # PATCH/PUT /registrations/1.json
   def update
-    if @registration.update(registration_params)
-      flash[:success] = "The update was successful"
-      redirect_to @registration
-    else
-      render action: 'edit'  
+    respond_to do |format|
+      if @registration.update(registration_params)
+        format.html { redirect_to @registration, notice: 'Registration was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @registration.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -58,7 +56,7 @@ class RegistrationsController < ApplicationController
   def destroy
     @registration.destroy
     respond_to do |format|
-      format.html { redirect_to request.referer }
+      format.html { redirect_to registrations_url }
       format.json { head :no_content }
     end
   end
@@ -71,22 +69,6 @@ class RegistrationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registration_params
-      params.require(:registration).permit(:firstname, :lastname, :email, :language, :last_attended, :coding_level, :os, :other_languages, :project, :idea, :want_learn, :group, :join_group, :notes)
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def index_params
-      params.permit(:type)
-    end
-
-    # Before filters
-    def signed_in_user
-      store_location
-      redirect_to admin_path, notice: "Only for Admins available! Please sign in." unless signed_in?
-    end
-
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
+      params[:registration]
     end
 end
