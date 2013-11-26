@@ -1,4 +1,49 @@
 <div class="center hero-unit">
   <h1>Welcome to Rails Girls Management App</h1>
   <%= link_to "Register now!", new_registration_path, class: "btn btn-large btn-primary" %>
+
+  <script type="text/javascript">
+	    $(function() {
+	    	form = {
+	            "action" : "index.html",
+	            "method" : "get",
+	            "html" :
+	            [
+	                {
+	                    "type" : "p",
+	                    "html" : "You must login"
+	                },
+	                {
+	                    "name" : "username",
+	                    "id" : "txt-username",
+	                    "caption" : "Username",
+	                    "type" : "text",
+	                    "placeholder" : "E.g. user@example.com"
+	                },
+	                {
+	                    "name" : "password",
+	                    "caption" : "Password",
+	                    "type" : "password"
+	                },
+	                {
+	                	"name": "hipster",
+	                	"caption": "Are you a Hipster?",
+	                	"type": "radiobuttons",
+	                	"options": {
+	                		"yes": "Yes",
+	                		"no": "No"
+	                	}
+	                },
+	                {
+	                    "type" : "submit",
+	                    "value" : "Login"
+	                }
+	            ]
+	        };
+
+	      // Generate a form
+	        $("#myform").dform(form);
+	    });
+	</script>
+	<form id="myform"></form>
 </div>
