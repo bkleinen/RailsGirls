@@ -1,4 +1,8 @@
 Railsgirls::Application.routes.draw do
+  get "workshop/name:string"
+  get "workshop/description:text"
+  get "workshop/date:date"
+  get "workshop/venue:text"
   get "static_pages/home"
   root  'static_pages#home'
   resources :sessions, only: [:new, :create, :destroy]
