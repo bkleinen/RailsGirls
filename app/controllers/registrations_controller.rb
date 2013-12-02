@@ -1,15 +1,11 @@
 class RegistrationsController < ApplicationController
   before_action :set_registration, only: [:show, :edit, :update, :destroy]
-  before_action :signed_in_user, only: [:index, :edit, :update, :show]
+  #before_action :signed_in_user, only: [:index, :edit, :update, :show]
 
   # GET /registrations
   # GET /registrations.json
   def index
-    if(index_params[:type] == 'coach')
-      @registrations = CoachRegistration.all
-    else
-      @registrations = ParticipantRegistration.all
-    end
+      @registrations = Registration.all    
   end
 
   # GET /registrations/1
@@ -19,12 +15,9 @@ class RegistrationsController < ApplicationController
 
   # GET /registrations/new
   def new
-    @registration = ParticipantRegistration.new
+    @registration = Registration.new
   end
 
-  def new_coach
-    @registration = CoachRegistration.new
-  end
 
   # GET /registrations/1/edit
   def edit
@@ -33,7 +26,7 @@ class RegistrationsController < ApplicationController
   # POST /registrations
   # POST /registrations.json
   def create
-    @registration = Registration.new(registration_params)
+    @registration = Registration.new(params)
       if @registration.save
         flash[:success] = "Your registration was successful"
         redirect_to success_reg_path
@@ -71,12 +64,8 @@ class RegistrationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registration_params
-      params.require(:registration).permit(:firstname, :lastname, :email, :language, :last_attended, :coding_level, :os, :other_languages, :project, :idea, :want_learn, :group, :join_group, :notes)
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def index_params
-      params.permit(:type)
+    # params.require(:registration).permit(:firstname, :lastname, :email, :language, :last_attended, :coding_level, :os, :other_languages, :project, :idea, :want_learn, :group, :join_group, :notes)
+      params
     end
 
     # Before filters
