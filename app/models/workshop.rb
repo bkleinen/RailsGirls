@@ -2,12 +2,12 @@ class Workshop
   include MongoMapper::Document
 
   key :name,				String
-  key :description,			Text
-  key :date,				Time
-  key :venue,				Text
+  key :description,			String
+  key :date,				String
+  key :venue,				String
 
-  one :form_coach
-  one :form_participant
+  one :coach_form
+  one :participant_form
   
   timestamps!
 end

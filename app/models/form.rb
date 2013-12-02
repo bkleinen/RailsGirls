@@ -1,6 +1,6 @@
 class Form
   include MongoMapper::Document
-  many :registrations
+  many :registrations, :as => :form
 
   key :structure,		Array
 

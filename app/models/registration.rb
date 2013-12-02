@@ -9,6 +9,6 @@ class Registration
 
  	# validates :language, :last_attended, :coding_level, :os, :other_languages, :join_group, presence: true
 
- 	belongs_to :form
+ 	belongs_to :form, :polymorphic => true
 
 end
