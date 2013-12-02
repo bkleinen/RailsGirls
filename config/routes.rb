@@ -1,8 +1,4 @@
 Railsgirls::Application.routes.draw do
-  get "workshop/name:string"
-  get "workshop/description:text"
-  get "workshop/date:date"
-  get "workshop/venue:text"
   get "static_pages/home"
   root  'static_pages#home'
   resources :sessions, only: [:new, :create, :destroy]
@@ -12,6 +8,11 @@ Railsgirls::Application.routes.draw do
   match '/admin',  to: 'sessions#new',         via: 'get', as: :admin
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/success_reg', to: 'registrations#success_reg',  via: 'get', as: :success_reg
+  resources :workshops
+  get 'form/:id' => 'forms#show', as: :coach_form
+  get 'form/:id' => 'forms#show', as: :participant_form
+  get 'forms/:type/new' => 'forms#new', as: :new_form
+  resources :forms
 
 
   # The priority is based upon order of creation: first created -> highest priority.

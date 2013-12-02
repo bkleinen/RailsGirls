@@ -1,0 +1,21 @@
+<%= form_path(@form._id) %>
+<% if @form %>
+<%= form_tag(form_path(@form._id), method: "put") %>
+<% else %>
+<%= form_tag(forms_path, method: "post") %>
+<% end %>
+  <% if @form.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@form.errors.count, "error") %> prohibited this form from being saved:</h2>
+
+      <ul>
+      <% @form.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= submit_tag('Submit') %>
+  </div>
