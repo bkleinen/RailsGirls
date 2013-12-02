@@ -3,7 +3,7 @@ class Workshop
 
   key :name,				String
   key :description,			String
-  key :date,				String
+  key :date,				Date
   key :venue,				String
 
   one :coach_form

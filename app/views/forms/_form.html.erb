@@ -19,3 +19,9 @@
   <div class="actions">
     <%= submit_tag('Submit') %>
   </div>
+
+  <%= form_for(@user) do |f| %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -6,6 +6,7 @@ end
 
 def create
 	@user = User.new(user_params)
+  Rails.logger.info(@user.errors.inspect) 
     if @user.save
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @user

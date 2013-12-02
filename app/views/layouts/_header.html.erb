@@ -3,16 +3,19 @@
     <div class="container">
       <nav>
         <ul class="nav pull-right">
-            <% if signed_in? %>
-              <li><%= link_to "Show Participant Registrations",    registrations_path %></li>
+            <%# if signed_in? %>
+              <li><%= link_to "Show Participant Registrations",    registrations_path(:type=>"participant") %></li>
               <li><%= link_to "Show Coach Registrations",    registrations_path(:type=>"coach") %></li>
               <li><%= link_to "Profile", current_user %></li>
               <li>
                 <%= link_to "Sign out", signout_path, method: "delete" %>
-              </li>              
-          <% else %>
+              </li>
+              <li>
+                <%= link_to "Workshops", workshops_path %>
+              </li>                
+          <%# else %>
              <li><%= link_to "Register",    new_registration_path %></li>
-          <% end %>
+          <%# end %>
         </ul>
       </nav>
     </div>
