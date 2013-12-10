@@ -15,12 +15,30 @@ def create
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @user
     else
+      print "couldn't save"
       render 'new'
     end
 end
 
 def show
 	@user = User.find(params[:id])
+end
+
+def destroy
+    @user.destroy
+    redirect_to users_url, notice: 'User was successfully destroyed.'
+end
+
+def edit  
+end
+
+def update
+    if @user.update(user_params)
+      flash[:success] = "The update was successful"
+      redirect_to @user
+    else
+      render action: 'edit'  
+    end
 end
 
 private
