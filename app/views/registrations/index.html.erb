@@ -1,5 +1,5 @@
 <% provide(:title, 'Listing registrations') %>
-<h1>Listing <% puts params[:type] %></h1>
+<h1>Listing <%=params[:type] + "es"%></h1>
 
 
 <table>
@@ -31,7 +31,9 @@
   </tbody>
 </table>
 
-
-<%= link_to 'New Registration', new_registration_path %>
+<% if params[:type] == "participant" %>
+<%= link_to 'New participant Registration', new_registration_path %>
 <br>
+<% else %>
 <%= link_to 'New Coach Registration', new_coach_path %>
+<% end %>
