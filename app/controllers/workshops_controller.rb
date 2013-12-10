@@ -1,6 +1,6 @@
 class WorkshopsController < ApplicationController
   before_action :set_workshop, only: [:show, :edit, :update, :destroy]
-
+  before_action :signed_in_user, only: [:index, :edit, :update, :show]
   # GET /workshops
   def index
     @workshops = Workshop.all
@@ -49,6 +49,12 @@ class WorkshopsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_workshop
       @workshop = Workshop.find(params[:id])
+    end
+
+    # Before filters
+    def signed_in_user
+      store_location
+      redirect_to admin_path, notice: "Only for Admins available! Please sign in." unless signed_in?
     end
 
     # Only allow a trusted parameter "white list" through.
