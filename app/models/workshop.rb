@@ -1,5 +1,6 @@
 class Workshop
   include MongoMapper::Document
+  plugin MongoMapper::Plugins::MultiParameterAttributes
 
   key :name,				String
   key :description,			String
