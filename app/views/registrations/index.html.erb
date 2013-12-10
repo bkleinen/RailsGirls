@@ -1,13 +1,15 @@
 <% provide(:title, 'Listing registrations') %>
-<h1>Listing registration</h1>
+<h1>Listing <% puts params[:type] %></h1>
 
 
 <table>
   <thead>
     <tr>
-      <% @registrations.first.attributes.each do |attr_name, attr_value| %>
-        <% if attr_name != '_id' and attr_name != 'authenticity_token' %>
-          <th><%= attr_name %></th>
+      <% if @registrations.first != nil
+         @registrations.first.attributes.each do |attr_name, attr_value| %>
+          <% if attr_name != '_id' and attr_name != 'authenticity_token' %>
+            <th><%= attr_name %></th>
+          <% end %>
         <% end %>
       <% end %>
     </tr>
