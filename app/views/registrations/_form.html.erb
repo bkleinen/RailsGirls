@@ -1,44 +1,44 @@
 <script type="text/javascript">
-          $(function() {
-            form = {
-                  "action" : "/registrations",
-                  "method" : "post",
-                  "html" :
-                  [
-                      {
-                          "type" : "p",
-                          "html" : "You must login"
-                      },
-                      {
-                          "name" : "username",
-                          "id" : "txt-username",
-                          "caption" : "Username",
-                          "type" : "text",
-                          "placeholder" : "E.g. user@example.com"
-                      },
-                      {
-                        "name": "hipster",
-                        "caption": "Are you a Hipster?",
-                        "type": "radiobuttons",
-                        "options": {
-                              "yes": "Yes",
-                              "no": "No"
-                        }
-                      },
-                      {
-                          "type" : "submit",
-                          "value" : "Login"
-                      },
-                      {
-                        "type": "hidden",
-                        "name": "authenticity_token",
-                        "value": "<%= form_authenticity_token %>"
-                      }
-                  ]
-              };
+    $(function() {
+      form = {
+            "action" : "/registrations",
+            "method" : "post",
+            "html" :
+            [
+                {
+                    "type" : "p",
+                    "html" : "You must login"
+                },
+                {
+                    "name" : "username",
+                    "id" : "txt-username",
+                    "caption" : "Username",
+                    "type" : "text",
+                    "placeholder" : "E.g. user@example.com"
+                },
+                {
+                  "name": "hipster",
+                  "caption": "Are you a Hipster?",
+                  "type": "radiobuttons",
+                  "options": {
+                        "yes": "Yes",
+                        "no": "No"
+                  }
+                },
+                {
+                    "type" : "submit",
+                    "value" : "Login"
+                },
+                {
+                  "type": "hidden",
+                  "name": "authenticity_token",
+                  "value": "<%= form_authenticity_token %>"
+                }
+            ]
+        };
 
-            // Generate a form
-              $("#myform").dform(form);
-          });
-      </script>
-      <form id="myform"></form>
+      // Generate a form
+        $("#myform").dform(form);
+    });
+</script>
+<form id="myform"></form>

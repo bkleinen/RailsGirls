@@ -1,6 +1,43 @@
+
+<div id="structure_forms" style="display:none">
+  
+  <div class="structure text">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name">
+    <label for="caption">Caption</label>
+    <input type="text" name="caption" id="caption">
+  </div>
+
+  <div class="structure checkbox">
+  </div>
+
+  <div class="structure radiobutton">
+  </div>
+
+</div>
+
+
+<form id="add_structure">
+
+  <select name="type" id="type">
+    <option value="text">Text</option>
+    <option value="checkbox">Checkbox</option>
+  </select>
+
+  <div id="current_structure_form">
+  </div>
+
+  <button type="submit" class="submit">add to structure</button>
+</form>
+
+<h2>Form Preview</h2>
+<form id="form_preview"></form>
+
+
 <%= form_for(@form) do |f| %>
+  <%= hidden_field(:form, :structure) %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save Form" %>
   </div>
 <% end %>
 
