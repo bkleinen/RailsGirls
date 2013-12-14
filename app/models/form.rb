@@ -2,7 +2,7 @@ class Form
   include MongoMapper::Document
   many :registrations, :as => :form
 
-  key :structure,		Array
+  key :structure,		Object
 
   belongs_to :workshop
   
