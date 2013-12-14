@@ -2,27 +2,29 @@
 <div id="structure_forms" style="display:none">
   
   <div class="structure text">
-    <label for="name">Name</label>
-    <input type="text" name="name" id="name">
-    <label for="caption">Caption</label>
-    <input type="text" name="caption" id="caption">
   </div>
 
   <div class="structure checkbox">
   </div>
 
-  <div class="structure radiobutton">
+  <div class="structure radiobuttons">
+    <input type="text" name="options" value='{"yes":"Yes","no":"No"}'>
   </div>
 
 </div>
 
 
+<h2>Add Form Element</h2>
 <form id="add_structure">
 
   <select name="type" id="type">
     <option value="text">Text</option>
     <option value="checkbox">Checkbox</option>
+    <option value="radiobuttons">Radiobutton</option>
   </select>
+
+  <label for="caption">Caption</label>
+  <input type="text" name="caption" id="caption">
 
   <div id="current_structure_form">
   </div>

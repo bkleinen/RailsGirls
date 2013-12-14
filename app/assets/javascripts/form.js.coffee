@@ -10,10 +10,12 @@ class StructureForm
 		@structure_form.find('.submit').on "click", (e) =>
 			e.preventDefault()
 			@addToStructure @structure_form.serializeArray()
-		@loadStructure('text')		
+		@structure_form.find('select').on( "change", =>
+			@loadStructure @structure_form.find(':selected').val()
+		).trigger('change')
 
 	loadStructure: (type) ->
-		@structure_form.find('#current_structure_form').html($('#structure_forms .'+type))
+		@structure_form.find('#current_structure_form').html($('#structure_forms .'+type).clone().html())
 
 	addToStructure: (data) ->
 		structure_element = new StructureElement(data)
@@ -28,9 +30,6 @@ class StructureForm
 			#action: "/registrations"
 			#method: "post"
 			html: elements
-
-		console.log form
-
 		$('#form_preview').empty().dform(form)
 
 
@@ -39,9 +38,13 @@ class StructureElement
 	constructor: (data) ->
 		obj = {}
 		$.map data, (n, i) ->
-			obj[n['name']] = n['value']
+			if n['name'] is 'options'
+				obj[n['name']] = $.parseJSON(n['value'])
+			else
+				obj[n['name']] = n['value']
+		obj['name'] = obj['caption'].toLowerCase()
+		console.log(obj['name'])
+				
+
+		console.log(obj)
 		@data = obj
-
-
-		#for data_object in data
-		#	console.log(data_object)
