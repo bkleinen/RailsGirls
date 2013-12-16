@@ -22,8 +22,14 @@ class FormsController < ApplicationController
 
   # POST /forms
   def create
-    @form = Form.new(form_params)
-
+    workshop_id = form_params[:workshop_id]
+    workshop_id['/'] = ''
+    workshop = Workshop.find(:id => workshop_id)
+    if form_params[:type] == "coach/"
+      @form = CoachForm.new(form_params)
+    else
+      @form = ParticipantForm.new(form_params)
+    end
     if @form.save
       redirect_to @form, notice: 'Form was successfully created.'
     else

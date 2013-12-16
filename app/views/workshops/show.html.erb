@@ -20,7 +20,7 @@
   <%= @workshop.venue %>
 </p>
 
-<%= link_to 'Add Coach Form', new_form_path(:type => :coach) %>
+<%= link_to 'Add Coach Form', new_form_path(:type => :coach, :workshop_id => params[:id]) %>
 <%= link_to 'Add Participant Form', new_form_path(:type => :participant) %>
 
 <%= link_to 'Edit', edit_workshop_path(@workshop) %> |
