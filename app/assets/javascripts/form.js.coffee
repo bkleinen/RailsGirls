@@ -10,6 +10,8 @@ class StructureForm
 	@structure_form_tag
 
 	constructor: (@elements=[]) ->
+		@editable = @elements.length == 0
+		@editable = true
 		@structure_form_tag = $('#add_structure')
 		@structure_form_tag.find('.submit').on "click", (e) =>
 			e.preventDefault()
@@ -20,6 +22,10 @@ class StructureForm
 		@structure_form_tag.find('select').on( "change", =>
 			@loadStructure @structure_form_tag.find(':selected').val()
 		).trigger('change')
+		$('#form_preview').on 'click', '.delete_element', (e) =>
+			e.preventDefault()
+			@elements.splice [parseInt($(e.target).attr('id').replace('delete_', ''))], 1
+			@renderPreview()
 
 	add_option: ->
 		console.log('add option')
@@ -50,16 +56,29 @@ class StructureForm
 		@elements.push structure_element.data
 		$('#form_structure').val(JSON.stringify(@elements))
 
-		#console.log(elements)
+		console.log(@elements)
 		@renderPreview()
 		@loadStructure(@structure_form_tag.find(':selected').val())
 		$('#add_structure #caption').val('')
 
 	renderPreview: ->
-		form =
-			#action: "/registrations"
-			#method: "post"
-			html: @elements
+		console.log 'render'
+		if @editable
+			editable_form_elements = []
+			index = 0
+			for element in @elements
+				element['id'] = ""+index
+				editable_form_elements.push element
+				link = {type: "a", href: ""+index, html: "Delete", class: "delete_element", id: "delete_"+index}
+				editable_form_elements.push link
+				index++
+			form =
+				#action: "/registrations"
+				#method: "post"
+				html: editable_form_elements
+		else
+			form =
+				html: @elements
 		$('#form_preview').empty().dform(form)
 
 class StructureElement
