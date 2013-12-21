@@ -25,6 +25,7 @@ class FormsController < ApplicationController
     workshop_id = form_params[:workshop_id]
     workshop_id['/'] = ''
     workshop = Workshop.find(:id => workshop_id)
+    print workshop
     if form_params[:type] == "coach/"
       @form = CoachForm.new(form_params)
     else

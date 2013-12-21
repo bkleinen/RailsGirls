@@ -3,15 +3,17 @@ $ ->
 		structure_form = new StructureForm
 	else
 		structure_form = new StructureForm(structure_to_render)
+		if not(typeof form is 'undefined')
+			structure_form.form = form			
 		console.log(structure_form)
 		structure_form.renderPreview()
 
 class StructureForm
 	@structure_form_tag
+	@form
 
 	constructor: (@elements=[]) ->
 		@editable = @elements.length == 0
-		@editable = true
 		@structure_form_tag = $('#add_structure')
 		@structure_form_tag.find('.submit').on "click", (e) =>
 			e.preventDefault()
@@ -72,13 +74,11 @@ class StructureForm
 				link = {type: "a", href: ""+index, html: "Delete", class: "delete_element", id: "delete_"+index}
 				editable_form_elements.push link
 				index++
-			form =
-				#action: "/registrations"
-				#method: "post"
-				html: editable_form_elements
+			form = if @form then @form else {html:[]}
+			form.html = editable_form_elements
 		else
-			form =
-				html: @elements
+			form = if @form then @form else {html:[]}
+			form.html = @elements
 		$('#form_preview').empty().dform(form)
 
 class StructureElement

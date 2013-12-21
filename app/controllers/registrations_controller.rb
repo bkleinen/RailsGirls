@@ -15,7 +15,8 @@ class RegistrationsController < ApplicationController
 
   # GET /registrations/new
   def new
-    @registration = Registration.new
+    @registration = Registration.new()
+    @form = Form.first
   end
 
 
@@ -27,6 +28,7 @@ class RegistrationsController < ApplicationController
   # POST /registrations.json
   def create
     @registration = Registration.new(params)
+    @registration.form = Form.find(params[:form_id])
       if @registration.save
         flash[:success] = "Your registration was successful"
         redirect_to success_reg_path

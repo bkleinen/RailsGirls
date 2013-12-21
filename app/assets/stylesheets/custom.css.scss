@@ -1,5 +1,10 @@
 @import "bootstrap";
 
+header {
+  background-color: #dd0000 !important;
+  color: #fff !important;
+}
+
 $lightGray: #999;
 
 @mixin box_sizing {
