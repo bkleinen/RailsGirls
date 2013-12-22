@@ -30,10 +30,3 @@
     <% end %>
   </tbody>
 </table>
-
-<% if params[:type] == "participant" %>
-<%= link_to 'New participant Registration', new_registration_path %>
-<br>
-<% else %>
-<%= link_to 'New Coach Registration', new_coach_path %>
-<% end %>

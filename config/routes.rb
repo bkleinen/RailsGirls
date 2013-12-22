@@ -13,6 +13,7 @@ Railsgirls::Application.routes.draw do
   get 'form/:id' => 'forms#show', as: :participant_form
   get 'forms/:type/new' => 'forms#new', as: :new_form
   resources :forms
+  get 'forms/publish' => 'forms#publish'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

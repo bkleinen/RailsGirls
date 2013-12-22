@@ -22,6 +22,8 @@ class RegistrationsController < ApplicationController
 
   # GET /registrations/1/edit
   def edit
+    @registration = Registration.find_by_id(params[:id])
+    @form = Form.first
   end
 
   # POST /registrations
@@ -40,11 +42,12 @@ class RegistrationsController < ApplicationController
   # PATCH/PUT /registrations/1
   # PATCH/PUT /registrations/1.json
   def update
-    if @registration.update(registration_params)
-      flash[:success] = "The update was successful"
-      redirect_to @registration
+    @registration = Registration.find_by_id(params[:id])
+    logger.debug "registration: DEEEEEEEEEEBUG!!!_: #{Registration.find_by_id(params[:id])}"
+    if @form.update_attributes(registration_params)
+      redirect_to @registration, notice: 'Registration was successfully updated.'
     else
-      render action: 'edit'  
+      render action: 'edit'
     end
   end
 

@@ -1,49 +1,20 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, 'Listing registrations') %>
 
-<p>
-  <strong>Firstname:</strong>
-  <%= @registration.firstname %>
-</p>
-
-<p>
-  <strong>Lastname:</strong>
-  <%= @registration.lastname %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @registration.email %>
-</p>
-
-<p>
-  <strong>Twitter:</strong>
-  <%= @registration.twitter %>
-</p>
-
-<p>
-  <strong>Programming:</strong>
-  <%= @registration.programming %>
-</p>
-
-<p>
-  <strong>Railsexperience:</strong>
-  <%= @registration.railsexperience %>
-</p>
-
-<p>
-  <strong>Motivation:</strong>
-  <%= @registration.motivation %>
-</p>
-
-<p>
-  <strong>Os:</strong>
-  <%= @registration.os %>
-</p>
-
-<p>
-  <strong>Specialdiat:</strong>
-  <%= @registration.specialdiet %>
-</p>
+<table>
+  <thead>
+    <tr>
+      <% if @registration != nil
+         @registration.attributes.each do |attr_name, attr_value| %>
+          <% if attr_name != '_id' and attr_name != 'authenticity_token' %>
+            <p>
+              <strong><%= attr_name %>: </strong><%= attr_value %>
+            </p>
+          <% end %>
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+</table>
 
 <%= link_to 'Edit', edit_registration_path(@registration) %> |
 <%= link_to 'Back', :back %>

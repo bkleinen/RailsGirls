@@ -20,6 +20,11 @@ class FormsController < ApplicationController
   def edit
   end
 
+  def publish
+    render :text => @some_object.inspect
+    Rails.logger.debug("My object: #{@Form.inspect}")
+  end
+
   # POST /forms
   def create
     workshop_id = form_params[:workshop_id]
@@ -40,13 +45,7 @@ class FormsController < ApplicationController
 
   # PATCH/PUT /forms/1
   def update
-    @form = Form.find_by_id(params[:id])
-    logger.debug "form_: #{Form.find_by_id(params[:id])}"
-    if @form.update_attributes(form_params)
-      redirect_to @form, notice: 'Form was successfully updated.'
-    else
-      render action: 'edit'
-    end
+
   end
 
   # DELETE /forms/1
