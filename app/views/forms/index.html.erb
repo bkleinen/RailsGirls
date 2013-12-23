@@ -14,7 +14,6 @@
       <tr>
         <td><%= link_to 'Show', form %></td>
         <td><%= link_to 'Edit', edit_form_path(form) %></td>
-        <td><%= link_to "Publish Form", forms_publish_path, :'form_id' => params['form_id'], remote: true %></td>
         <td><%= link_to 'Destroy', form_path(form), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

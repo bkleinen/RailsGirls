@@ -7,9 +7,7 @@
       <th>Date</th>
       <th>Description</th>
       <th>Venue</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Status</th>
     </tr>
   </thead>
 
@@ -20,9 +18,15 @@
         <td><%= workshop.date %></td>
         <td><%= workshop.description %></td>
         <td><%= workshop.venue %></td>
+        <% if workshop.status != nil %>
+          <td><%= workshop.status %></td>
+        <% else %>
+          <td>private</td>
+        <% end %>
         <td><%= link_to 'Show', workshop %></td>
         <td><%= link_to 'Edit', edit_workshop_path(workshop) %></td>
         <td><%= link_to 'Destroy', workshop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to "Publish Workshop", { :controller => "workshops", :action => "publish", :id=>workshop.id}%></td>
       </tr>
     <% end %>
   </tbody>

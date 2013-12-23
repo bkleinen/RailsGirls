@@ -1,4 +1,17 @@
 <div class="center hero-unit">
-  <h1>Welcome to Rails Girls Management App</h1>
-  <%= link_to "Register now!", new_registration_path, class: "btn btn-large btn-primary" %>
+	<h1>Welcome to Rails Girls Management App</h1>
+	<h2>You can register for the following Workshops:</h2>
 </div>
+	<ul>
+		<% @workshops.each do |workshop| %>
+			<% if workshop.status != nil %>
+				<ul>
+					<td><%=workshop.name%></td>
+					<td><%=workshop.description%></td>
+					<td><%=workshop.date%></td>
+					<%= link_to "Register now!", new_registration_path, class: "btn btn-large btn-primary" %>
+				</ul>
+			<% end %>
+		<%end%>
+	</ul>
+

@@ -20,11 +20,6 @@ class FormsController < ApplicationController
   def edit
   end
 
-  def publish
-    render :text => @some_object.inspect
-    Rails.logger.debug("My object: #{@Form.inspect}")
-  end
-
   # POST /forms
   def create
     workshop_id = form_params[:workshop_id]

@@ -1,4 +1,5 @@
 class WorkshopsController < ApplicationController
+
   before_action :set_workshop, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user, only: [:index, :edit, :update, :show]
   # GET /workshops
@@ -8,6 +9,13 @@ class WorkshopsController < ApplicationController
 
   # GET /workshops/1
   def show
+  end
+
+  def publish
+    @workshop = Workshop.find(params[:id])
+    @workshop.update_attributes(:status => "published")
+    @workshop.save
+    # render :text => @workshop.status
   end
 
   # GET /workshops/new
