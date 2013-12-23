@@ -46,7 +46,9 @@ class FormsController < ApplicationController
   # DELETE /forms/1
   def destroy
     @form.destroy
-    redirect_to forms_url, notice: 'Form was successfully destroyed.'
+    @form.workshop.status = nil
+    @form.workshop.save
+    redirect_to forms_url, notice: 'Form was successfully destroyed. Due to this, the corresponding Workshop is no longer published'
   end
 
   private

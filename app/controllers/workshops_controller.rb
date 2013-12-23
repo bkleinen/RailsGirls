@@ -15,12 +15,11 @@ class WorkshopsController < ApplicationController
     @workshop = Workshop.find(params[:id])
     if (@workshop.participant_form != nil)
       @workshop.update_attributes(:status => "published")
-      redirect_to @workshop, notice: 'Workshop was successfully updated.'
+      redirect_to workshops_url, notice: 'Workshop was successfully updated.'
       @workshop.save
     else
       redirect_to workshops_url, notice: 'Workshop could not be published. Please create a participant form!'
     end
-    # render :text => @workshop.status
   end
 
   # GET /workshops/new
