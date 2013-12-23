@@ -26,7 +26,9 @@
         <td><%= link_to 'Show', workshop %></td>
         <td><%= link_to 'Edit', edit_workshop_path(workshop) %></td>
         <td><%= link_to 'Destroy', workshop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= button_to "Publish Workshop", { :controller => "workshops", :action => "publish", :id=>workshop.id}%></td>
+        <% if workshop.status == nil %>
+          <td><%= button_to "Publish Workshop", { :controller => "workshops", :action => "publish", :id=>workshop.id}%></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -16,7 +16,8 @@ class RegistrationsController < ApplicationController
   # GET /registrations/new
   def new
     @registration = Registration.new()
-    @form = Form.first
+    @form = Workshop.find(params[:id]).participant_form
+    # render :text => @form.structure
   end
 
 

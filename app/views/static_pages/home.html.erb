@@ -9,7 +9,7 @@
 					<td><%=workshop.name%></td>
 					<td><%=workshop.description%></td>
 					<td><%=workshop.date%></td>
-					<%= link_to "Register now!", new_registration_path, class: "btn btn-large btn-primary" %>
+					<%= link_to "Register now!", new_registration_path(:id=>workshop.id), class: "btn btn-large btn-primary" %>
 				</ul>
 			<% end %>
 		<%end%>
