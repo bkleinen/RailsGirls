@@ -20,7 +20,9 @@
           <td><%= link_to 'Show', form %></td>
           <td><%= link_to 'Edit', edit_form_path(form) %></td>
           <td><%= link_to 'Destroy', form_path(form), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <td><%= button_to "Add to Workshop", { :controller => "workshops", :action => "addForm", :id=>form.id, :type=>params[:type], :workshop_id=>params[:id]}%></td>
+          <% if params[:id] != nil %>
+            <td><%= button_to "Add to Workshop", { :controller => "workshops", :action => "addForm", :id=>form.id, :type=>params[:type], :workshop_id=>params[:id]}%></td>
+          <% end %>
         </tr>
       <% end %>
     <% end %>

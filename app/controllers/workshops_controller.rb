@@ -23,10 +23,20 @@ class WorkshopsController < ApplicationController
   end
 
   def addForm
-      @form = Form.find(params[:id])
-      @form.workshop_id = params[:workshop_id]
-      @form.save
+    @existing_form = Form.find(params[:id])
+    #just temporary better way would be to do a redirect to create in the forms controller or sending the data via rubies Net::HTTP
+    if params[:type] == "coach/"
+      @form = CoachForm.new
+    else
+      @form = ParticipantForm.new
+    end
+    @form.workshop_id = params[:workshop_id]
+    @form.structure = @existing_form.structure
+    if @form.save
       redirect_to workshops_url, notice: 'Workshop was successfully updated.'
+    else
+      redirect_to workshops_url, notice: 'Could not update Workshop.'
+    end
   end
 
   # GET /workshops/new
