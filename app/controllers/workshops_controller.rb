@@ -5,6 +5,7 @@ class WorkshopsController < ApplicationController
   # GET /workshops
   def index
     @workshops = Workshop.all
+    @forms = Form.all
   end
 
   # GET /workshops/1

@@ -28,9 +28,11 @@ class FormsController < ApplicationController
 
     if form_params[:type] == "coach/"
       @form = CoachForm.new(form_params)
-      @key = SecureRandom.hex 
-      @workshop.update_attributes(:coachKey => @key)
-      @workshop.save  
+      if @workshop != nil      
+        @key = SecureRandom.hex 
+        @workshop.update_attributes(:coachKey => @key)
+        @workshop.save
+      end
     else
       @form = ParticipantForm.new(form_params)
     end

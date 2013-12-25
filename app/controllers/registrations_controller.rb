@@ -36,6 +36,9 @@ class RegistrationsController < ApplicationController
     @registration = Registration.new(params)
     @registration.form = Form.find(params[:form_id])
       if @registration.save
+        #send email to participant after registration not working jet.
+        # RegistrationMailer.welcome_email(@registration).deliver
+
         flash[:success] = "Your registration was successful"
         redirect_to success_reg_path
       else
