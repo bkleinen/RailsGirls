@@ -11,7 +11,7 @@
 
   <tbody>
     <% @forms.each do |form| %>
-        <%if params[:template] == form.template && form.type == params[:type]%>
+        <%if form.type == params[:type]%>
         <script type="text/javascript">
           structure_to_render = <%=form.structure.html_safe %>;
         </script>
@@ -26,8 +26,8 @@
         </tr>
       <% end %>
     <% end %>
-    <td><%= link_to 'Create new Participant Template Form', { :controller => "forms", :action => "new", :type=>'participant', :template => '1'}%></td>
-    <td><%= link_to 'Create new Coach Template Form', { :controller => "forms", :action => "new", :type=>'coach', :template=>'1'}%></td>
+    <td><%= link_to 'Create new Participant Form', { :controller => "forms", :action => "new", :type=>'participant'}%></td>
+    <td><%= link_to 'Create new Coach Form', { :controller => "forms", :action => "new", :type=>'coach'}%></td>
   </tbody>
 </table>
 

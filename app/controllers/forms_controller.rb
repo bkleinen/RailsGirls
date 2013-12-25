@@ -24,8 +24,6 @@ class FormsController < ApplicationController
     # render :text=>form_params[:template]
     workshop_id = form_params[:workshop_id]
     workshop_id['/'] = ''
-    template = form_params[:template]
-    template['/'] = ''
     workshop = Workshop.find(:id => workshop_id)
     print workshop
 

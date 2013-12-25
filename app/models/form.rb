@@ -3,7 +3,6 @@ class Form
   many :registrations, :as => :form
 
   key :structure,		Object
-  key :template,		String
   belongs_to :workshop
   
   timestamps!
