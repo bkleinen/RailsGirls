@@ -30,11 +30,13 @@
           <td><%= link_to "Show participant_form", { :controller => "forms", :action => "show", :id=>workshop.participant_form.id}%></td>
         <% else %>
           <td><%= link_to 'Add Participant Form', new_form_path(:type => :participant, :workshop_id => workshop.id) %></td>
+          <td><%= link_to 'Add excisting Participant Form', { :controller => "forms", :action => "index", :id=>workshop.id, :type=>"participant_form"}%></td>
         <% end %>
         <% if workshop.coach_form != nil %>
           <td><%= link_to "Show coach_form", { :controller => "forms", :action => "show", :id=>workshop.coach_form.id}%></td>
         <% else %>
           <td><%= link_to 'Add Coach Form', new_form_path(:type => :coach, :workshop_id => workshop.id) %></td>
+          <td><%= link_to 'Add excisting Coach Form', { :controller => "forms", :action => "index", :id=>workshop.id, :type=>"coach_form"}%></td>
         <% end %>
         <% if workshop.status == nil %>
           <td><%= button_to "Publish Workshop", { :controller => "workshops", :action => "publish", :id=>workshop.id}%></td>

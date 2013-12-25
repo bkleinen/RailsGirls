@@ -6,6 +6,7 @@ class Workshop
   key :description,			String
   key :date,				Date
   key :venue,				String
+  key :status,				String
 
   one :coach_form
   one :participant_form

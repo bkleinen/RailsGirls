@@ -22,19 +22,24 @@ class FormsController < ApplicationController
 
   # POST /forms
   def create
+    render :text=>form_params[:template]
     workshop_id = form_params[:workshop_id]
     workshop_id['/'] = ''
     workshop = Workshop.find(:id => workshop_id)
     print workshop
+
     if form_params[:type] == "coach/"
       @form = CoachForm.new(form_params)
     else
       @form = ParticipantForm.new(form_params)
     end
+    if(params[:template])
+      # @form.template = params[:template]
+    end
     if @form.save
-      redirect_to @form, notice: 'Form was successfully created.'
+      # redirect_to @form, notice: 'Form was successfully created.'
     else
-      render action: 'new'
+      # render action: 'new'
     end
   end
 
@@ -46,8 +51,10 @@ class FormsController < ApplicationController
   # DELETE /forms/1
   def destroy
     @form.destroy
-    @form.workshop.status = nil
-    @form.workshop.save
+    if @form.workshop != nil
+      @form.workshop.status = nil
+      @form.workshop.save
+    end
     redirect_to forms_url, notice: 'Form was successfully destroyed. Due to this, the corresponding Workshop is no longer published'
   end
 

@@ -14,6 +14,7 @@ Railsgirls::Application.routes.draw do
   get 'forms/:type/new' => 'forms#new', as: :new_form
   resources :forms
   post 'workshops/publish' => 'workshops#publish'
+  post 'workshops/addForm' => 'workshops#addForm'
 
 
 

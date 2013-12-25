@@ -44,7 +44,6 @@ class RegistrationsController < ApplicationController
   # PATCH/PUT /registrations/1.json
   def update
     @registration = Registration.find_by_id(params[:id])
-    logger.debug "registration: DEEEEEEEEEEBUG!!!_: #{Registration.find_by_id(params[:id])}"
     if @form.update_attributes(registration_params)
       redirect_to @registration, notice: 'Registration was successfully updated.'
     else
