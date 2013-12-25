@@ -24,14 +24,17 @@ class FormsController < ApplicationController
     # render :text=>form_params[:template]
     workshop_id = form_params[:workshop_id]
     workshop_id['/'] = ''
-    workshop = Workshop.find(:id => workshop_id)
-    print workshop
+    @workshop = Workshop.find(workshop_id)
 
     if form_params[:type] == "coach/"
       @form = CoachForm.new(form_params)
+      @key = SecureRandom.hex 
+      @workshop.update_attributes(:coachKey => @key)
+      @workshop.save  
     else
       @form = ParticipantForm.new(form_params)
     end
+    @form.workshop_id = workshop_id
     if @form.save
       redirect_to @form, notice: 'Form was successfully created.'
     else

@@ -16,8 +16,11 @@ class RegistrationsController < ApplicationController
   # GET /registrations/new
   def new
     @registration = Registration.new()
-    @form = Workshop.find(params[:id]).participant_form
-    # render :text => @form.structure
+    if params[:type] == 'participant'
+      @form = Workshop.find(params[:id]).participant_form
+    elsif params[:type] == Workshop.find(params[:id]).coachKey
+      @form = Workshop.find(params[:id]).coach_form
+    end
   end
 
 

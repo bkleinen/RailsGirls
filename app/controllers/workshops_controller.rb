@@ -24,9 +24,14 @@ class WorkshopsController < ApplicationController
 
   def addForm
     @existing_form = Form.find(params[:id])
+    @workshop = Workshop.find(params[:workshop_id])
     #just temporary better way would be to do a redirect to create in the forms controller or sending the data via rubies Net::HTTP
     if params[:type] == "coach/"
       @form = CoachForm.new
+      require 'active_support'
+      @key = SecureRandom.hex 
+      @workshop.update_attributes(:coachKey => @key)
+      @workshop.save  
     else
       @form = ParticipantForm.new
     end

@@ -41,6 +41,9 @@
         <% if workshop.status == nil %>
           <td><%= button_to "Publish Workshop", { :controller => "workshops", :action => "publish", :id=>workshop.id}%></td>
         <% end %>
+        <% if workshop.status == 'published' %>
+          <td><%= link_to "Coach Registration Link", new_registration_path(:id=>workshop.id, :type=>workshop.coachKey) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
