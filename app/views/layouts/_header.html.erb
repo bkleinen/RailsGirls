@@ -13,8 +13,11 @@
                 <%= link_to "Workshops", workshops_path %>
               </li>
               <li>
-                <%= link_to "Form Templates", forms_path %>
-              </li>                   
+                <%= link_to "Form Templates Participant", forms_path(:template=>'1', :type=>'participant/') %>
+              </li>
+              <li>
+                <%= link_to "Form Templates Coach", forms_path(:template=>'1', :type=>'coach/') %>
+              </li>                     
           <% else %>
              <li><%= link_to "Register",    new_registration_path %></li>
           <% end %>

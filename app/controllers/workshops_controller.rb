@@ -23,16 +23,9 @@ class WorkshopsController < ApplicationController
   end
 
   def addForm
-      @workshop = Workshop.find(params[:workshop_id])
       @form = Form.find(params[:id])
-
-      if(params[:type] == "participant_form")
-        @workshop.participant_form = @form
-        @workshop.save
-        # render :text => @workshop.save
-      else
-        @workshop.update_attributes(:coach_form => @form)
-      end
+      @form.workshop_id = params[:workshop_id]
+      @form.save
       redirect_to workshops_url, notice: 'Workshop was successfully updated.'
   end
 

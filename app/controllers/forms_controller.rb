@@ -12,8 +12,7 @@ class FormsController < ApplicationController
 
   # GET /forms/new
   def new
-    @type = params[:type]
-    @form = Form.new
+    @form = Form.new    
   end
 
   # GET /forms/1/edit
@@ -22,9 +21,11 @@ class FormsController < ApplicationController
 
   # POST /forms
   def create
-    render :text=>form_params[:template]
+    # render :text=>form_params[:template]
     workshop_id = form_params[:workshop_id]
     workshop_id['/'] = ''
+    template = form_params[:template]
+    template['/'] = ''
     workshop = Workshop.find(:id => workshop_id)
     print workshop
 
@@ -33,13 +34,10 @@ class FormsController < ApplicationController
     else
       @form = ParticipantForm.new(form_params)
     end
-    if(params[:template])
-      # @form.template = params[:template]
-    end
     if @form.save
-      # redirect_to @form, notice: 'Form was successfully created.'
+      redirect_to @form, notice: 'Form was successfully created.'
     else
-      # render action: 'new'
+      render action: 'new'
     end
   end
 
