@@ -1,3 +1,5 @@
+require 'active_support'
+
 class WorkshopsController < ApplicationController
 
   before_action :set_workshop, only: [:show, :edit, :update, :destroy]
@@ -29,7 +31,6 @@ class WorkshopsController < ApplicationController
     #just temporary better way would be to do a redirect to create in the forms controller or sending the data via rubies Net::HTTP
     if params[:type] == "coach/"
       @form = CoachForm.new
-      require 'active_support'
       @key = SecureRandom.hex 
       @workshop.update_attributes(:coachKey => @key)
       @workshop.save  

@@ -39,13 +39,13 @@
         <% else %>
           <td><%= link_to 'Add Coach Form', new_form_path(:type => :coach, :workshop_id => workshop.id) %></td>
           <% if @forms.count > 0 %>
-            <td><%= link_to 'Add excisting Coach Form', { :controller => "forms", :action => "index", :id=>workshop.id, :type=>"coach/"}%></td>
+            <td><%= link_to 'Add existing Coach Form', { :controller => "forms", :action => "index", :id=>workshop.id, :type=>"coach/"}%></td>
           <% end %>
         <% end %>
         <% if workshop.status == nil && workshop.participant_form != nil %>
-          <td><%= button_to "Publish Workshop", { :controller => "workshops", :action => "publish", :id=>workshop.id}%></td>
+          <td><%= button_to "Publish Workshop", { :controller => "workshops", :action => "publish", :id=>workshop.id} %></td>
         <% end %>
-        <% if workshop.status == 'published' %>
+        <% if workshop.status == 'published' and workshop.keys.include? "coachKey" %>
           <td><%= link_to "Coach Registration Link", new_registration_path(:id=>workshop.id, :type=>workshop.coachKey) %></td>
         <% end %>
       </tr>
