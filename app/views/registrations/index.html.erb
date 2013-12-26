@@ -12,7 +12,7 @@
               <td><strong> <%= element['caption']%> </strong></td>
               <% if element['type'] == 'radiobuttons'%>
                 <% @registrations.each do |registration| %>
-                  <%= registration.attributes %>
+                  
                   <% i = i +1 %>
                 <%end %>
               <% end %>

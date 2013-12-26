@@ -8,14 +8,18 @@ class RegistrationsController < ApplicationController
   # GET /registrations.json
   def index
       @registrations = Registration.all
-      @form = Form.find(@registrations.first.form_id)
-      @structure = JSON.parse @form.structure
-      hidden_keys = ["_id", "form_id", "form_type", "authenticity_token", "form_type", "action", "controller"]
-      @registrations.each do |registration|
-        hidden_keys.each do |key|
-          registration.attributes.delete(key)
-        end
+      if @registrations.count != 0
+        @form = Form.find(@registrations.first.form_id)
+        @structure = JSON.parse @form.structure
       end
+      # render :text=>@registrations.first.form_id
+      
+      # hidden_keys = ["_id", "form_id", "form_type", "authenticity_token", "form_type", "action", "controller"]
+      # @registrations.each do |registration|
+      #   hidden_keys.each do |key|
+      #     registration.attributes.delete(key)
+      #   end
+      # end
   end
 
   # GET /registrations/1
