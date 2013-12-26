@@ -20,7 +20,7 @@ class RegistrationsController < ApplicationController
               attributes.delete key
             end
             reg = {}
-            reg[:id] = registration.id
+            reg["id"] = registration.id.to_s
             reg["attributes"] = attributes
             @registrations.push reg
           end
