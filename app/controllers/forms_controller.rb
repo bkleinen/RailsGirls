@@ -1,3 +1,5 @@
+require 'json'
+
 class FormsController < ApplicationController
   before_action :set_form, only: [:show, :edit, :update, :destroy]
 
@@ -12,7 +14,15 @@ class FormsController < ApplicationController
 
   # GET /forms/new
   def new
-    @form = Form.new    
+    @form = Form.new
+    @structure = []
+    keys = Registration.keys.keys
+    hidden_keys = ["_id", "form_id", "form_type"]
+    keys.each do |attr_name, attr_value|
+      unless hidden_keys.include? attr_name
+        @structure.push "type"=>"text", "caption"=>attr_name, "name"=>attr_name
+      end
+    end
   end
 
   # GET /forms/1/edit
