@@ -17,7 +17,7 @@ class FormsController < ApplicationController
     @form = Form.new
     @structure = []
     keys = Registration.keys.keys
-    hidden_keys = ["_id", "form_id", "form_type"]
+    hidden_keys = ["_id", "form_id", "form_type", "authenticity_token", "form_type", "action", "controller"]
     keys.each do |attr_name, attr_value|
       unless hidden_keys.include? attr_name
         @structure.push "type"=>"text", "caption"=>attr_name, "name"=>attr_name

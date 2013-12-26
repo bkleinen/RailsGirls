@@ -16,7 +16,6 @@ class RegistrationsController < ApplicationController
           registration.attributes.delete(key)
         end
       end
-      # render :text=> @registrations.first.attributes
   end
 
   # GET /registrations/1
