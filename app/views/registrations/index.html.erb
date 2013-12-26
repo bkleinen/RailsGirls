@@ -5,28 +5,32 @@
 <table>
   <thead>
     <tr>
-      <% if @registrations.first != nil
-         @registrations.first.attributes.each do |attr_name, attr_value| %>
-          <% if attr_name != '_id' and attr_name != 'authenticity_token' %>
-            <th><%= attr_name %></th>
+      <% if @registrations.first != nil %>
+          <% if !@structure.blank? %>
+            <% i = 0 %>
+            <% @structure.each do |element| %>
+              <td><strong> <%= element['caption']%> </strong></td>
+              <% if element['type'] == 'radiobuttons'%>
+                <% @registrations.each do |registration| %>
+                  <%= registration.attributes %>
+                  <% i = i +1 %>
+                <%end %>
+              <% end %>
+            <% end %>
           <% end %>
-        <% end %>
       <% end %>
     </tr>
   </thead>
-
   <tbody>
     <% @registrations.each do |registration| %>
       <tr>
       <% registration.attributes.each do |attr_name, attr_value| %>
-        <% if attr_name != '_id' and attr_name != 'authenticity_token' %>
-          <td><%= attr_value %></td>
-        <% end %>
+        <td> <%= attr_value %> </td>
       <% end %>
       <td><%= link_to 'Show', registration %></td>
       <td><%= link_to 'Edit', edit_registration_path(registration) %></td>
       <td><%= link_to 'Destroy', registration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
+      </tr>
     <% end %>
   </tbody>
 </table>

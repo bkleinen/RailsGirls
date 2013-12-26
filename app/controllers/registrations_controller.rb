@@ -1,3 +1,5 @@
+require 'json'
+
 class RegistrationsController < ApplicationController
   before_action :set_registration, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user, only: [:index, :edit, :update, :show]
@@ -5,7 +7,16 @@ class RegistrationsController < ApplicationController
   # GET /registrations
   # GET /registrations.json
   def index
-      @registrations = Registration.all    
+      @registrations = Registration.all
+      @form = Form.find(@registrations.first.form_id)
+      @structure = JSON.parse @form.structure
+      hidden_keys = ["_id", "form_id", "form_type", "authenticity_token", "form_type", "action", "controller"]
+      @registrations.each do |registration|
+        hidden_keys.each do |key|
+          registration.attributes.delete(key)
+        end
+      end
+      # render :text=> @registrations.first.attributes
   end
 
   # GET /registrations/1
