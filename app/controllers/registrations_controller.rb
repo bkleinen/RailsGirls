@@ -11,17 +11,19 @@ class RegistrationsController < ApplicationController
       @registrations = []
       if registrations_data.count > 0
         @form = Form.find(registrations_data.first.form_id)
-        @structure = JSON.parse @form.structure
-        hidden_keys = ["_id", "form_id", "form_type", "authenticity_token", "form_type", "action", "controller"]
-        registrations_data.each do |registration|
-          attributes = registration.attributes.clone
-          hidden_keys.each do |key|
-            attributes.delete key
+        if @form
+          @structure = JSON.parse @form.structure
+          hidden_keys = ["_id", "form_id", "form_type", "authenticity_token", "form_type", "action", "controller"]
+          registrations_data.each do |registration|
+            attributes = registration.attributes.clone
+            hidden_keys.each do |key|
+              attributes.delete key
+            end
+            reg = {}
+            reg[:id] = registration.id
+            reg["attributes"] = attributes
+            @registrations.push reg
           end
-          reg = {}
-          reg[:id] = registration.id
-          reg["attributes"] = attributes
-          @registrations.push reg
         end
       end
       # render :text=>@registrations.first.form_id
