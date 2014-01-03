@@ -56,7 +56,12 @@ class FormsController < ApplicationController
 
   # PATCH/PUT /forms/1
   def update
-
+    @form = Form.find_by_id(params[:id])
+    if @form.update_attributes(form_params)
+      redirect_to @form, notice: 'Form was successfully updated.'
+    else
+      render action: 'edit'
+    end
   end
 
   # DELETE /forms/1

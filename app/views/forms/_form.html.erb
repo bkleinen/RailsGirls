@@ -41,9 +41,8 @@
 <%= form_for(@form) do |f| %>
   <%= hidden_field(:form, :structure) %>
 
-  <input name="form[type]" type="hidden" value=<%=params["type"] %>/>
-  <input name="form[workshop_id]" type="hidden" value=<%=params["workshop_id"] %>/>
-  <input name="form[template]" type="hidden" value=<%=params["template"] %>/>
+  <input name="form[type]" type="hidden" value="<%= @form._type || params["type"] %>"/>
+  <input name="form[workshop_id]" type="hidden" value="<%= @form.workshop_id || params["workshop_id"] %>"/>
   <div class="actions">
     <%= f.submit "Save Form" %>
   </div>

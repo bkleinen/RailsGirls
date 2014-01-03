@@ -4,8 +4,8 @@ $ ->
 	else
 		structure_form = new StructureForm(structure_to_render)
 		if not(typeof form is 'undefined')
-			structure_form.form = form			
-		console.log(structure_form)
+			structure_form.form = form	
+		#console.log(structure_form)
 		structure_form.renderPreview()
 
 class StructureForm
@@ -13,7 +13,8 @@ class StructureForm
 	@form
 
 	constructor: (@elements=[]) ->
-		@editable = @elements.length == 0
+		@editable = $('form#add_structure').length > 0
+		console.log @editable
 		@structure_form_tag = $('#add_structure')
 		@structure_form_tag.find('.submit').on "click", (e) =>
 			e.preventDefault()
@@ -22,12 +23,13 @@ class StructureForm
 			e.preventDefault()
 			@add_option()
 		@structure_form_tag.find('select').on( "change", =>
-			@loadStructure @structure_form_tag.find(':selected').val()
+			@loadStructureForm @structure_form_tag.find(':selected').val()
 		).trigger('change')
 		$('#form_preview').on 'click', '.delete_element', (e) =>
 			e.preventDefault()
 			@elements.splice [parseInt($(e.target).attr('id').replace('delete_', ''))], 1
 			@renderPreview()
+			$('#form_structure').val(JSON.stringify(@elements))
 
 	add_option: ->
 		console.log('add option')
@@ -47,10 +49,10 @@ class StructureForm
 			#@structure_form_tag.find('input[name="options"]').val()
 		@structure_form_tag.find('#current_structure_form .add_option').before new_option
 
-	loadStructure: (type) ->
+	loadStructureForm: (type) ->
 		@structure_form_tag.find('#current_structure_form').empty().html($('#structure_forms .'+type).clone().html())
 
-	addToStructure: () ->
+	addToStructure: ->
 		@structure_form_tag.find('.disabled').each ->
 			$(@).prop('disabled', true)
 		data = @structure_form_tag.serializeArray()
@@ -60,7 +62,7 @@ class StructureForm
 
 		console.log(@elements)
 		@renderPreview()
-		@loadStructure(@structure_form_tag.find(':selected').val())
+		@loadStructureForm(@structure_form_tag.find(':selected').val())
 		$('#add_structure #caption').val('')
 
 	renderPreview: ->
