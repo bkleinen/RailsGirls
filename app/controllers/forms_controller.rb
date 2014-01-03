@@ -31,12 +31,10 @@ class FormsController < ApplicationController
 
   # POST /forms
   def create
-    # render :text=>form_params[:template]
     workshop_id = form_params[:workshop_id]
-    workshop_id['/'] = ''
     @workshop = Workshop.find(workshop_id)
 
-    if form_params[:type] == "coach/"
+    if form_params[:type] == "coach"
       @form = CoachForm.new(form_params)
       if @workshop != nil      
         @key = SecureRandom.hex 
