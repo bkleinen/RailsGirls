@@ -1,17 +1,28 @@
 <div class="center hero-unit">
 	<h1>Rails Girls Magdeburg</h1>
-	<h2>You can register for the following Workshops:</h2>
+	<h2>Sie können sich zu folgenden Workshops anmelden:</h2>
 </div>
-	<ul>
-		<% @workshops.each do |workshop| %>
-			<% if workshop.status != nil %>
-				<ul>
-					<td><%=workshop.name%></td>
-					<td><%=workshop.description%></td>
-					<td><%=workshop.date%></td>
-					<%= link_to "Register now!", new_registration_path(:id=>workshop.id, :type=>'participant'), class: "btn btn-large btn-primary" %>
-				</ul>
-			<% end %>
-		<%end%>
-	</ul>
-
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Beschreibung</th>
+			<th>Datum</th>
+			<th>Veranstaltungsort</th>
+		</tr>
+	</thead>
+	<tbody>		
+	<% @workshops.each do |workshop| %>
+		<% if workshop.status != nil %>	
+			<tr>
+				<td><%=workshop.name%></td>
+				<td><%=workshop.description%></td>
+				<td><%=workshop.date%></td>
+				<td><%=workshop.venue%></td>
+				<td><%= link_to "Register now!", new_registration_path(:id=>workshop.id, :type=>'participant'), class: "btn btn-large btn-primary" %></td>
+				
+			</tr>	
+		<% end %>
+	<%end%>
+	</tbody>
+</table>
