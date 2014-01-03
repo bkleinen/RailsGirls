@@ -79,6 +79,11 @@ class StructureForm
 			form = if @form then @form else {html:[]}
 			form.html = editable_form_elements
 		else
+			for element in @elements
+				element['validate'] =
+					'required': true
+        			"messages": {"required": "Required input"}
+				console.log element
 			form = if @form then @form else {html:[]}
 			form.html = @elements
 		$('#form_preview').empty().dform(form)
