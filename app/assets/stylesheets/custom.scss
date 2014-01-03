@@ -1,11 +1,18 @@
 @import "bootstrap";
 
-header {
-  background-color: #dd0000 !important;
-  color: #fff !important;
-}
-
 $lightGray: #999;
+$black: #000;
+$white: #fff;
+
+
+.navbar{
+  background-color: #dd0000;
+  min-height: inherit;
+  a{
+    color: $white;
+    font-weight: normal; 
+  }
+}
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -38,20 +45,19 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
+  text-align: left;
 }
 
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
-  text-align: center;
 }
 
 h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
   margin-bottom: 30px;
-  text-align: center;
   font-weight: normal;
   color: $lightGray;
 }
@@ -108,6 +114,23 @@ input {
 .field_with_errors {
   @extend .control-group;
   @extend .error;
+}
+.ui-dform-radiobuttons{
+  .ui-dform-radio{
+    width: auto;
+    float: left;
+    margin: 0 20px 0 0;
+  }
+  .ui-dform-label{
+    display: block;
+    font-weight: normal;
+    line-height: 1em;
+    margin: 10px 0 10px 0;
+  }
+}
+
+.ui-dform-submit{
+  width: auto;
 }
 
 
