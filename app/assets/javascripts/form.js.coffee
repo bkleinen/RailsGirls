@@ -79,6 +79,9 @@ class StructureForm
 			form = if @form then @form else {html:[]}
 			form.html = editable_form_elements
 		else
+			for element in @elements
+				if not( element["type"] is "checkbox") 
+					element["required"] = true
 			form = if @form then @form else {html:[]}
 			form.html = @elements
 		$('#form_preview').empty().dform(form)
