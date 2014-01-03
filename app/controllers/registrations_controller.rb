@@ -19,21 +19,32 @@ class RegistrationsController < ApplicationController
             hidden_keys.each do |key|
               attributes.delete key
             end
+            i = 0
+            # render :text => @structure
+            # return
+            attributes.each do |k, v|
+              if @structure[i]["type"] == "radiobuttons"
+                attributes[k] = @structure[i]["options"][v]
+              end
+              i+=1
+            end
+            # render :text => attributes
             reg = {}
             reg["id"] = registration.id.to_s
             reg["attributes"] = attributes
             @registrations.push reg
+            # @structure[i]["type"]
+            # i = 0
+            # @structure.each do |element|
+            #   render :text => @structure
+            #   return
+            #   i+=1
+            # end
+            
+            
           end
         end
       end
-      # render :text=>@registrations.first.form_id
-      
-      # hidden_keys = ["_id", "form_id", "form_type", "authenticity_token", "form_type", "action", "controller"]
-      # @registrations.each do |registration|
-      #   hidden_keys.each do |key|
-      #     registration.attributes.delete(key)
-      #   end
-      # end
   end
 
   # GET /registrations/1
