@@ -6,14 +6,14 @@ $white: #fff;
 $railsRed: #d3360b;
 
 
-.navbar{
-  background-color: $railsRed;
-  min-height: inherit;
-  a{
-    color: $white;
-    font-weight: normal; 
-  }
-}
+// .navbar{
+//   background-color: $railsRed;
+//   min-height: inherit;
+//   a{
+//     color: $white;
+//     font-weight: normal; 
+//   }
+// } 
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
