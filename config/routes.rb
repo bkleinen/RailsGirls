@@ -9,8 +9,8 @@ Railsgirls::Application.routes.draw do
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/success_reg', to: 'registrations#success_reg',  via: 'get', as: :success_reg
   resources :workshops
-  get 'form/:id' => 'forms#show', as: :coach_form
-  get 'form/:id' => 'forms#show', as: :participant_form
+  get 'forms/:id' => 'forms#show', as: :coach_form
+  get 'forms/:id' => 'forms#show', as: :participant_form
   get 'forms/:type/new' => 'forms#new', as: :new_form
   resources :forms
   post 'workshops/publish' => 'workshops#publish'

@@ -54,14 +54,13 @@ class RegistrationsController < ApplicationController
 
   # GET /registrations/new
   def new
-    @registration = Registration.new()
+    @registration = Registration.new
     if params[:type] == 'participant'
       @form = Workshop.find(params[:id]).participant_form
     elsif params[:type] == Workshop.find(params[:id]).coachKey
       @form = Workshop.find(params[:id]).coach_form
     end
   end
-
 
   # GET /registrations/1/edit
   def edit

@@ -31,12 +31,10 @@ class FormsController < ApplicationController
 
   # POST /forms
   def create
-    # render :text=>form_params[:template]
     workshop_id = form_params[:workshop_id]
-    workshop_id['/'] = ''
     @workshop = Workshop.find(workshop_id)
 
-    if form_params[:type] == "coach/"
+    if form_params[:type] == "coach"
       @form = CoachForm.new(form_params)
       if @workshop != nil      
         @key = SecureRandom.hex 
@@ -56,7 +54,12 @@ class FormsController < ApplicationController
 
   # PATCH/PUT /forms/1
   def update
-
+    @form = Form.find_by_id(params[:id])
+    if @form.update_attributes(form_params)
+      redirect_to @form, notice: 'Form was successfully updated.'
+    else
+      render action: 'edit'
+    end
   end
 
   # DELETE /forms/1
