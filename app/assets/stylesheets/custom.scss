@@ -110,7 +110,25 @@ input {
   @extend .error;
 }
 
+tr:hover {
+  background: #f9f9f9;
+}
 
+thead {
+  tr {
+    background: #efefef;
+    &:hover {
+      background: #efefef;
+    }
+  }
+  td {
+    border: 1px solid white;
+  }
+}
+
+td {
+  padding: 5px 10px;
+}
 
 
 
