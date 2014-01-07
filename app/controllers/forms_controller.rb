@@ -46,7 +46,7 @@ class FormsController < ApplicationController
     end
     @form.workshop_id = workshop_id
     if @form.save
-      redirect_to @form, notice: 'Form was successfully created.'
+      redirect_to workshops_path, notice: 'Form was successfully created.'
     else
       render action: 'new'
     end

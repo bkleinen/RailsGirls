@@ -11,6 +11,7 @@ gem 'mongo_mapper', :git => "git://github.com/mongomapper/mongomapper.git", :tag
 gem 'bson_ext'
 gem 'mm-multi-parameter-attributes', :git => "https://github.com/rlivsey/mm-multi-parameter-attributes"
 gem 'imgkit', :git => "https://github.com/csquared/IMGKit.git"
+gem 'font-awesome-sass'
 
 group :development do
   gem 'sqlite3', '1.3.8'

@@ -10,10 +10,6 @@ class WorkshopsController < ApplicationController
     @forms = Form.all
   end
 
-  # GET /workshops/1
-  def show
-  end
-
   def publish
     @workshop = Workshop.find(params[:id])
     if (@workshop.participant_form != nil)
@@ -29,7 +25,7 @@ class WorkshopsController < ApplicationController
     @existing_form = Form.find(params[:id])
     @workshop = Workshop.find(params[:workshop_id])
     #just temporary better way would be to do a redirect to create in the forms controller or sending the data via rubies Net::HTTP
-    if params[:type] == "coach/"
+    if params[:type] == "coach"
       @form = CoachForm.new
       @key = SecureRandom.hex 
       @workshop.update_attributes(:coachKey => @key)
@@ -59,7 +55,7 @@ class WorkshopsController < ApplicationController
   def create
     @workshop = Workshop.new(workshop_params)    
     if @workshop.save
-      redirect_to @workshop, notice: 'Workshop was successfully created.'
+      redirect_to workshops_path, notice: 'Workshop was successfully created.'
     else
       render action: 'new'
     end

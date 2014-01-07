@@ -8,6 +8,9 @@
       <th>Description</th>
       <th>Venue</th>
       <th>Status</th>
+      <th class="settings">Edit</th>
+      <th class="settings">Participant Form</th>
+      <th class="settings">Coach Form</th>
     </tr>
   </thead>
 
@@ -23,31 +26,45 @@
         <% else %>
           <td>private</td>
         <% end %>
-        <td><%= link_to 'Show', workshop %></td>
-        <td><%= link_to 'Edit', edit_workshop_path(workshop) %></td>
-        <td><%= link_to 'Destroy', workshop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% if workshop.participant_form != nil %>
-          <td><%= link_to "Show participant_form", { :controller => "forms", :action => "show", :id=>workshop.participant_form.id}%></td>
-        <% else %>
-          <td><%= link_to 'Add Participant Form', new_form_path(:type => :participant, :workshop_id => workshop.id) %></td>
-          <% if @forms.count > 0 %>
-            <td><%= link_to 'Add excisting Participant Form', { :controller => "forms", :action => "index", :id=>workshop.id, :type=>"participant/"}%></td>
+        
+        <td>
+          <%= link_to edit_workshop_path(workshop), :title=>"Edit" do %><i class="fa fa-pencil"></i><% end %>
+          <%= link_to workshop, method: :delete, data: { confirm: 'Are you sure?' }, :title=>"Destroy" do %><i class="fa fa-trash-o"></i><% end %>
+        </td>
+        
+        <td>
+          <% if workshop.participant_form != nil %>
+            <%= link_to form_path(workshop.participant_form.id), :title=>"Show Participant Form" do %><i class="fa fa-eye"></i><% end %><br />
+            <%= link_to new_registration_path(:id=>workshop.id, :type=>:participant), :title=>"Participant Registration Link" do %><i class="fa fa-arrow-right"></i><% end %>
+          <% else %>
+            <%= link_to new_form_path(:type => :participant, :workshop_id => workshop.id), :title=>'Add Participant Form' do %><i class="fa fa-plus"></i><br /><% end %>
+            <% if @forms.count > 0 %>
+              <%= link_to forms_path(:id=>workshop.id, :type=>"participant"), :title=>'Add excisting Participant Form' do %><i class="fa fa-plus"></i> Existing<% end %>
+            <% end %>
           <% end %>
-        <% end %>
-        <% if workshop.coach_form != nil %>
-          <td><%= link_to "Show coach_form", { :controller => "forms", :action => "show", :id=>workshop.coach_form.id}%></td>
-        <% else %>
-          <td><%= link_to 'Add Coach Form', new_form_path(:type => :coach, :workshop_id => workshop.id) %></td>
-          <% if @forms.count > 0 %>
-            <td><%= link_to 'Add existing Coach Form', { :controller => "forms", :action => "index", :id=>workshop.id, :type=>"coach/"}%></td>
+        </td>
+
+        <td>
+          <% if workshop.coach_form != nil %>
+            <%= link_to form_path(workshop.coach_form.id), :title=>"Show Coach Form" do %><i class="fa fa-eye"></i><% end %><br />
+          <% else %>
+            <%= link_to new_form_path(:type => :coach, :workshop_id => workshop.id), :title=>'Add Coach Form' do %>
+            <i class="fa fa-plus"></i><% end %><br />
+            <% if @forms.count > 0 %>
+              <%= link_to forms_path(:id=>workshop.id, :type=>"coach"), :title=>'Add existing Coach Form' do %><i class="fa fa-plus"></i> Existing<% end %>
+            <% end %>
           <% end %>
-        <% end %>
-        <% if workshop.status == nil && workshop.participant_form != nil %>
-          <td><%= button_to "Publish Workshop", { :controller => "workshops", :action => "publish", :id=>workshop.id} %></td>
-        <% end %>
-        <% if workshop.status == 'published' and workshop.keys.include? "coachKey" %>
-          <td><%= link_to "Coach Registration Link", new_registration_path(:id=>workshop.id, :type=>workshop.coachKey) %></td>
-        <% end %>
+
+          <% if workshop.status == 'published' and workshop.keys.include? "coachKey" %>
+            <%= link_to new_registration_path(:id=>workshop.id, :type=>workshop.coachKey), :title=>"Coach Registration Link" do %><i class="fa fa-arrow-right"></i><% end %>
+          <% end %>
+        
+        </td>
+        <td>
+          <% if workshop.status.nil? and !workshop.participant_form.nil? %>
+            <%= button_to "Publish Workshop", { :controller => "workshops", :action => "publish", :id=>workshop.id} %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
