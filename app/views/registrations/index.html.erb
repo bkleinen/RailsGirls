@@ -23,8 +23,8 @@
   <tbody>
     <% @registrations.each do |registration| %>
       <tr>
-      <% registration["attributes"].each do |attr_name, attr_value| %>
-        <td> <%= attr_value %> </td>
+      <% @structure.each do |element| %>
+        <td><%= registration["attributes"][element["name"]] %></td>
       <% end %>
       <td><%= link_to 'Show', registration_path(registration["id"]) %></td>
       <td><%= link_to 'Edit', edit_registration_path(registration["id"]) %></td>
