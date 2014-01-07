@@ -57,8 +57,7 @@ class WorkshopsController < ApplicationController
 
   # POST /workshops
   def create
-    @workshop = Workshop.new(workshop_params)
-
+    @workshop = Workshop.new(workshop_params)    
     if @workshop.save
       redirect_to @workshop, notice: 'Workshop was successfully created.'
     else

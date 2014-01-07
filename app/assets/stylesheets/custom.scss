@@ -13,6 +13,10 @@ $railsRed: #d3360b;
     color: $white;
     font-weight: normal; 
   }
+  img{
+    margin-top: 6px;
+    height: 25px;
+  }
 } 
 
 @mixin box_sizing {

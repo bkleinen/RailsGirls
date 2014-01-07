@@ -2,6 +2,7 @@
   <div class="navbar-inner">
     <div class="container">
       <nav>
+      <%= image_tag(settings.logoURL) %>
         <ul class="nav pull-right">          
             <% if signed_in? %>
               <li>
@@ -17,11 +18,9 @@
                 <%= link_to "Workshops", workshops_path %>
               </li>
           <% end %>
-        </ul>
-        <ul class="nav pull-left">
-              <li>
-                <%= link_to "Home", static_pages_home_path %>
-              </li>
+          <li>
+            <%= link_to "Home", static_pages_home_path %>
+          </li>
         </ul>
       </nav>
     </div>
