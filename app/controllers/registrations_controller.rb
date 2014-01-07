@@ -33,15 +33,7 @@ class RegistrationsController < ApplicationController
             reg["id"] = registration.id.to_s
             reg["attributes"] = attributes
             @registrations.push reg
-            # @structure[i]["type"]
-            # i = 0
-            # @structure.each do |element|
-            #   render :text => @structure
-            #   return
-            #   i+=1
-            # end
-            
-            
+            print @structure
           end
         end
       end
