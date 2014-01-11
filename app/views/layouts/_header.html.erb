@@ -4,16 +4,16 @@
       <nav>
       <%= image_tag(settings.logoURL) %>
         <ul class="nav pull-right">          
-            <% if signed_in? %>
-              <li>
-                <%= link_to "Sign out", signout_path, method: "delete" %>
-              </li>
-              <li>
-                <%= link_to "Show Registrations", registrations_path%>
-              </li>
-              <li>
-                <%= link_to "Workshops", workshops_path %>
-              </li>
+          <% if signed_in? %>
+            <li>
+              <%= link_to "Sign out", signout_path, method: "delete" %>
+            </li>
+            <li>
+              <%= link_to "Show Registrations", registrations_path%>
+            </li>
+            <li>
+              <%= link_to "Workshops", workshops_path %>
+            </li>
           <% end %>
           <li>
             <%= link_to "Home", home_path %>
