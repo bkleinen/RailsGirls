@@ -64,7 +64,7 @@ class WorkshopsController < ApplicationController
   # PATCH/PUT /workshops/1
   def update
     if @workshop.update_attributes(workshop_params)
-      redirect_to @workshop, notice: 'Workshop was successfully updated.'
+      redirect_to workshops_url, notice: 'Workshop was successfully updated.'
     else
       render action: 'edit'
     end
