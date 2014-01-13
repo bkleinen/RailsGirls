@@ -1,7 +1,5 @@
 class Registration
   include MongoMapper::Document
-	before_save { self.email = email.downcase }
-
 
   	key :firstname,		String
   	key :lastname,		String
