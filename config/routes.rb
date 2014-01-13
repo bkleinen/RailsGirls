@@ -7,7 +7,7 @@ Railsgirls::Application.routes.draw do
   match '/admin',  to: 'sessions#new',         via: 'get', as: :admin
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/success_reg', to: 'registrations#success_reg',  via: 'get', as: :success_reg
-  resources :workshops
+  resources :workshops, :except => [:show]
   get 'forms/:id' => 'forms#show', as: :coach_form
   get 'forms/:id' => 'forms#show', as: :participant_form
   get 'forms/:type/new' => 'forms#new', as: :new_form

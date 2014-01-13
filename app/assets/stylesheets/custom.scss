@@ -152,6 +152,11 @@ thead {
     &:hover {
       background: #efefef;
     }
+    th.settings {
+      color: $lightGray;
+      background-color: #fff;
+      padding-left: 5px;
+    }
   }
   td {
     border: 1px solid white;

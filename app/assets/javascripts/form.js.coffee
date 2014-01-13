@@ -14,7 +14,7 @@ class StructureForm
 
 	constructor: (@elements=[]) ->
 		@editable = $('form#add_structure').length > 0
-		console.log @editable
+		$('#form_structure').val(JSON.stringify(@elements))
 		@structure_form_tag = $('#add_structure')
 		@structure_form_tag.find('.submit').on "click", (e) =>
 			e.preventDefault()
