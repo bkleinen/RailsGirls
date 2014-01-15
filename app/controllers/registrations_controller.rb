@@ -20,11 +20,12 @@ class RegistrationsController < ApplicationController
               attributes.delete key
             end
             i = 0
-            attributes.each do |k, v|
-              if @structure[i]["type"] == "radiobuttons"
-                attributes[k] = @structure[i]["options"][v]
+            for elem in @structure
+              if elem["type"] == "radiobuttons"
+                val = attributes[elem["name"]]
+                attributes[elem["name"]] = elem["options"][val]
               end
-              i+=1
+              i += 1
             end
             reg = {}
             reg["id"] = registration.id.to_s
