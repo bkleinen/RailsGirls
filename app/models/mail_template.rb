@@ -25,9 +25,4 @@ class MailTemplate
 	end
 	result
   end
-
-  def deliver_email()
-
-  end
-   handle_asynchronously :deliver_email
 end
