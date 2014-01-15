@@ -58,6 +58,16 @@ class WorkshopsController < ApplicationController
     end
   end
 
+  def manual_mail_show
+
+  end
+
+  def manual_mail_send
+    RegistrationMailer.manual_email(params).deliver
+    # render :text => params
+    redirect_to workshops_url, notice: 'E-Mail was successfully sent.'
+  end
+
   # GET /workshops/new
   def new
     @workshop = Workshop.new

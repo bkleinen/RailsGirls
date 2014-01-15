@@ -69,8 +69,7 @@ class RegistrationsController < ApplicationController
         # send email to participant after registration not working jet.
         workshop = @registration.form.workshop
         mail_text = workshop.mail_template.filter_text(@registration)
-        print "-------------------call deliver_mail -----------------------"
-        RegistrationMailer.deliver_welcome_email(@registration, mail_text)
+        RegistrationMailer.welcome_email(@registration, mail_text).deliver
         flash[:success] = "Your registration was successful"
         redirect_to success_reg_path
       else

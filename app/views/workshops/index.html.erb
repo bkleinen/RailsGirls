@@ -11,7 +11,8 @@
       <th class="settings">Edit</th>
       <th class="settings">Participant Form</th>
       <th class="settings">Coach Form</th>
-      <th class="settings">E-Mail Confirmation</th>
+      <th class="settings">Automatic E-Mail after Reg.</th>
+      <th class="settings">Manual E-Mail</th>
     </tr>
   </thead>
 
@@ -72,7 +73,9 @@
             <% end %>
           <% end %>
         </td>
-
+        <td>
+            <%= link_to workshops_manual_mail_show_path(:id => workshop.id), :title=>'New Mail' do %><i class="fa fa-plus"></i> New<% end %>
+        </td>
         <td>
           <% if workshop.status.nil? and !workshop.participant_form.nil? %>
             <%= button_to "Publish Workshop", { :controller => "workshops", :action => "publish", :id=>workshop.id} %>
