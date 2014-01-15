@@ -167,6 +167,15 @@ td {
   padding: 5px 10px;
 }
 
+.textlist{
+  padding-left: 0px;
+  li{
+    display: list-item;
+    list-style-position: inside;
+    list-style-type: disc;
+    float: none;
+  }
+}
 
 
 

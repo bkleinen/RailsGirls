@@ -36,8 +36,8 @@ class FormsController < ApplicationController
 
     if form_params[:type] == "coach"
       @form = CoachForm.new(form_params)
-      if @workshop != nil      
-        @key = SecureRandom.hex 
+      if @workshop != nil
+        @key = SecureRandom.hex
         @workshop.update_attributes(:coachKey => @key)
         @workshop.save
       end
@@ -76,7 +76,6 @@ class FormsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_form
       @form = Form.find(params[:id])
-      logger.debug "id: #{params[:id]}"
     end
 
     # Only allow a trusted parameter "white list" through.

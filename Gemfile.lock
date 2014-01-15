@@ -6,8 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/mongomapper/mongomapper.git
-  revision: 9b87dee507802a8cb96f2d316802c9fd241448c8
-  tag: v0.13.0.beta2
+  revision: d3cc527b215d2573369eed3c9f963384305d626d
   specs:
     mongo_mapper (0.13.0.beta2)
       activemodel (>= 3.0.0)

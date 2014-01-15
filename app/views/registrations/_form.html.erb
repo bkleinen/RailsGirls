@@ -29,7 +29,7 @@
     <% if attr_name != 'form_id' and attr_name != '_id' and attr_name != 'action' and attr_name != 'controller' and attr_name != 'authenticity_token' and attr_name != 'form_type' %>
         <script type="text/javascript">
           $("input[name="'<% attr_name %>'"].val("'<% attr_value %>'")");
-        </script>              
+        </script>
     <% end %>
   <% end %>
 <% end %>

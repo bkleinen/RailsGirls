@@ -1,4 +1,5 @@
 Railsgirls::Application.routes.draw do
+  resources :mail_templates
   root  'static_pages#home', as: :home
   resources :sessions, only: [:new, :create, :destroy]
   match '/registrations/new_coach', to: 'registrations#new_coach',  via: 'get', as: :new_coach
@@ -14,6 +15,7 @@ Railsgirls::Application.routes.draw do
   resources :forms
   post 'workshops/publish' => 'workshops#publish'
   post 'workshops/addForm' => 'workshops#addForm'
+  post 'workshops/add_mail_template' => 'workshops#add_mail_template'
 
 
 

@@ -8,6 +8,7 @@ class WorkshopsController < ApplicationController
   def index
     @workshops = Workshop.all
     @forms = Form.all
+    @mail_templates = MailTemplate.all
   end
 
   def publish
@@ -24,18 +25,33 @@ class WorkshopsController < ApplicationController
   def addForm
     @existing_form = Form.find(params[:id])
     @workshop = Workshop.find(params[:workshop_id])
-    #just temporary better way would be to do a redirect to create in the forms controller or sending the data via rubies Net::HTTP
     if params[:type] == "coach"
       @form = CoachForm.new
-      @key = SecureRandom.hex 
+      @key = SecureRandom.hex
       @workshop.update_attributes(:coachKey => @key)
-      @workshop.save  
+      @workshop.save
     else
       @form = ParticipantForm.new
     end
     @form.workshop_id = params[:workshop_id]
     @form.structure = @existing_form.structure
     if @form.save
+      redirect_to workshops_url, notice: 'Workshop was successfully updated.'
+    else
+      redirect_to workshops_url, notice: 'Could not update Workshop.'
+    end
+  end
+
+  def add_mail_template
+    @existing_mail_template = MailTemplate.find(params[:id])
+    @workshop = Workshop.find(params[:workshop_id])
+    @mail_template = MailTemplate.new
+    @mail_template.workshop_id = params[:workshop_id]
+    @mail_template.name = @existing_mail_template.name
+    @mail_template.subject = @existing_mail_template.subject
+    @mail_template.text = @existing_mail_template.text
+
+    if @mail_template.save
       redirect_to workshops_url, notice: 'Workshop was successfully updated.'
     else
       redirect_to workshops_url, notice: 'Could not update Workshop.'
@@ -53,7 +69,8 @@ class WorkshopsController < ApplicationController
 
   # POST /workshops
   def create
-    @workshop = Workshop.new(workshop_params)    
+    @workshop = Workshop.new(workshop_params)
+    standard_mail_template = MailTemplate.create(:workshop_id => @workshop.id)
     if @workshop.save
       redirect_to workshops_path, notice: 'Workshop was successfully created.'
     else

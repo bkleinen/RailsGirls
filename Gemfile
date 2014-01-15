@@ -7,11 +7,12 @@ gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
-gem 'mongo_mapper', :git => "git://github.com/mongomapper/mongomapper.git", :tag => "v0.13.0.beta2"
+gem 'mongo_mapper', :git => "git://github.com/mongomapper/mongomapper.git"
 gem 'bson_ext'
 gem 'mm-multi-parameter-attributes', :git => "https://github.com/rlivsey/mm-multi-parameter-attributes"
 gem 'imgkit', :git => "https://github.com/csquared/IMGKit.git"
 gem 'font-awesome-sass'
+
 
 group :development do
   gem 'sqlite3', '1.3.8'

@@ -20,15 +20,12 @@ class RegistrationsController < ApplicationController
               attributes.delete key
             end
             i = 0
-            # render :text => @structure
-            # return
             attributes.each do |k, v|
               if @structure[i]["type"] == "radiobuttons"
                 attributes[k] = @structure[i]["options"][v]
               end
               i+=1
             end
-            # render :text => attributes
             reg = {}
             reg["id"] = registration.id.to_s
             reg["attributes"] = attributes
@@ -66,9 +63,11 @@ class RegistrationsController < ApplicationController
     @registration = Registration.new(params)
     @registration.form = Form.find(params[:form_id])
       if @registration.save
-        #send email to participant after registration not working jet.
-        # RegistrationMailer.welcome_email(@registration).deliver
-
+        # send email to participant after registration not working jet.
+        workshop = @registration.form.workshop
+        mail_text = workshop.mail_template.filter_text(@registration)
+        print "-------------------call deliver_mail -----------------------"
+        RegistrationMailer.deliver_welcome_email(@registration, mail_text)
         flash[:success] = "Your registration was successful"
         redirect_to success_reg_path
       else

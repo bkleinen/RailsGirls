@@ -8,6 +8,7 @@ class Workshop
   key :venue,				String
   key :status,				String
 
+  one :mail_template
   one :coach_form
   one :participant_form
   
