@@ -54,14 +54,16 @@ class RegistrationsController < ApplicationController
   # GET /registrations/1/edit
   def edit
     @registration = Registration.find_by_id(params[:id])
-    @form = Form.first
+    @form = @registration.form
   end
 
   # POST /registrations
   # POST /registrations.json
   def create
     @registration = Registration.new(params)
+    print @registration
     @registration.form = Form.find(params[:form_id])
+    print @registration.form
       if @registration.save
         # send email to participant after registration not working jet.
         workshop = @registration.form.workshop
@@ -71,7 +73,8 @@ class RegistrationsController < ApplicationController
         flash[:success] = "Your registration was successful"
         redirect_to success_reg_path
       else
-        render 'new'
+        flash[:error] = "Your registration was not successful"
+        redirect_to :back
       end
   end
 

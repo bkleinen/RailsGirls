@@ -16,13 +16,16 @@ class FormsController < ApplicationController
   def new
     @form = Form.new
     @structure = []
-    keys = Registration.keys.keys
-    hidden_keys = ["_id", "form_id", "form_type", "authenticity_token", "form_type", "action", "controller"]
-    keys.each do |attr_name, attr_value|
-      unless hidden_keys.include? attr_name
-        @structure.push "type"=>"text", "caption"=>attr_name, "name"=>attr_name
-      end
-    end
+    @structure.push "type"=>"text", "caption"=>"Firstname", "name"=>"firstname", "class"=>"immutable_element"
+    @structure.push "type"=>"text", "caption"=>"Lastname", "name"=>"lastname", "class"=>"immutable_element"
+    @structure.push "type"=>"text", "caption"=>"E-Mail", "name"=>"email", "class"=>"immutable_element"
+    # keys = Registration.keys.keys
+    # hidden_keys = ["_id", "form_id", "form_type", "authenticity_token", "form_type", "action", "controller"]
+    # keys.each do |attr_name, attr_value|
+    #   unless hidden_keys.include? attr_name
+    #     @structure.push "type"=>"text", "caption"=>attr_name, "name"=>attr_name, "class"=>"immutable_element"
+    #   end
+    # end
   end
 
   # GET /forms/1/edit
