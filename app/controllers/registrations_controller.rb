@@ -141,7 +141,7 @@ class RegistrationsController < ApplicationController
         flash[:success] = "Your registration was successful"
         redirect_to success_reg_path
       else
-        flash[:error] = "Your registration was not successful"
+        flash[:error] = "Your registration was not successfull"
         redirect_to :back
       end
   end
