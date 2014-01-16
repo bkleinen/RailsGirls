@@ -42,7 +42,7 @@ class RegistrationsController < ApplicationController
           @participant_registrations = tmp[0]
           @participant_structure = tmp[1]
       end
-      if registrations_data_coach > 0
+      if registrations_data_coach.count > 0
           tmp = parse_structure(workshop.coach_form, registrations_data_coach)
           @coach_registrations = tmp[0]
           @coach_structure = tmp[1]
