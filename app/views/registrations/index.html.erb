@@ -1,35 +1,70 @@
 <% provide(:title, 'Listing registrations') %>
 <h1>Listing Registrations</h1>
-
+<div id="list_options">
+  <%= form_tag(registrations_path, :method => :get) do %>
+    <dl>
+      <dt>Workshop</dt>
+      <dd>
+        <%= select_tag'workshop', options_for_select(@list_options[:workshop], @previously_selected_workshop)%>
+      </dd>
+      <dt>Form Type</dt>
+      <dd>
+        <%= select_tag'form_type', options_for_select(@list_options[:form_type], @previously_selected_type)%>
+      </dd>
+      <dd>
+      <%= submit_tag "Update list" %> or
+      <%= link_to('Reset', registrations_path) %>
+      </dd>
+    </dl>
+  <% end %>
+</div>
 <table>
   <thead>
     <tr>
-      <% if @registrations.first != nil %>
-          <% if !@structure.blank? %>
-            <% i = 0 %>
-            <% @structure.each do |element| %>
-              <td><strong> <%= element['caption']%> </strong></td>
-              <% if element['type'] == 'radiobuttons'%>
-                <% @registrations.each do |registration| %>
-                  
-                  <% i += 1 %>
-                <%end %>
-              <% end %>
-            <% end %>
-          <% end %>
+      <% if (@participant_registrations.first != nil) && (!@participant_structure.blank?)%>
+        <% @participant_structure.each do |element| %>
+          <td><strong> <%= element['caption']%> </strong></td>
+        <% end %>
       <% end %>
     </tr>
   </thead>
   <tbody>
-    <% @registrations.each do |registration| %>
+    <% @participant_registrations.each do |registration| %>
       <tr>
-      <% @structure.each do |element| %>
-        <td><%= registration["attributes"][element["name"]] %></td>
-      <% end %>
-      <td><%= link_to 'Show', registration_path(registration["id"]) %></td>
-      <td><%= link_to 'Edit', edit_registration_path(registration["id"]) %></td>
-      <td><%= link_to 'Destroy', registration_path(registration["id"]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% @participant_structure.each do |element| %>
+          <td><%= registration["attributes"][element["name"]] %></td>
+        <% end %>
+
+        <td><%= link_to 'Show', registration_path(registration["id"]) %></td>
+        <td><%= link_to 'Edit', edit_registration_path(registration["id"]) %></td>
+        <td><%= link_to 'Destroy', registration_path(registration["id"]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<table>
+  <thead>
+    <tr>
+      <% if (@coach_registrations.first != nil) && (!@coach_structure.blank?)%>
+        <% @coach_structure.each do |element| %>
+          <td><strong> <%= element['caption']%> </strong></td>
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @coach_registrations.each do |registration| %>
+      <tr>
+        <% @coach_structure.each do |element| %>
+          <td><%= registration["attributes"][element["name"]] %></td>
+        <% end %>
+
+        <td><%= link_to 'Show', registration_path(registration["id"]) %></td>
+        <td><%= link_to 'Edit', edit_registration_path(registration["id"]) %></td>
+        <td><%= link_to 'Destroy', registration_path(registration["id"]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
