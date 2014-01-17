@@ -64,7 +64,6 @@ class WorkshopsController < ApplicationController
 
   def manual_mail_send
     RegistrationMailer.manual_email(params).deliver
-    # render :text => params
     redirect_to workshops_url, notice: 'E-Mail was successfully sent.'
   end
 

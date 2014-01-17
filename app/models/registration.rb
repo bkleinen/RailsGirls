@@ -6,7 +6,7 @@ class Registration
 	key :email,			String
 
 	validates_presence_of :firstname, :lastname, :email
-	validate :custom_validation
+	# validate :custom_validation
 
 	def custom_validation
 		email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

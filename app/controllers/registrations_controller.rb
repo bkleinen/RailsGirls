@@ -174,6 +174,23 @@ class RegistrationsController < ApplicationController
     end
   end
 
+  def accept_registrations
+    params.select{ |key, value| value == "1" }.keys.each do |id|
+      r = Registration.find(id)
+      r.update_attributes!(:accepted => true)
+    end
+    params.select{ |key, value| value == "0" }.keys.each do |id|
+      r = Registration.find(id)
+      r.update_attributes!(:accepted => false)
+    end
+    params.each do |key, value|
+      if value == "1" || value == "0"
+        params.delete(key)
+      end
+    end
+    redirect_to registrations_path(params), notice: 'Registrations successfully accepted.'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_registration

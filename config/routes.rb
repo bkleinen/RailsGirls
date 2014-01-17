@@ -18,6 +18,7 @@ Railsgirls::Application.routes.draw do
   post 'workshops/add_mail_template' => 'workshops#add_mail_template'
   post 'workshops/manual_mail_send' => 'workshops#manual_mail_send'
   get 'workshops/manual_mail_show/' => 'workshops#manual_mail_show'
+  post 'registrations/accept_registrations' => 'registrations#accept_registrations'
 
 
 
