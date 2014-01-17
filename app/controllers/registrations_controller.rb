@@ -7,7 +7,6 @@ class RegistrationsController < ApplicationController
   # GET /registrations
   # GET /registrations.json
   def index
-    # render :text => "test"
     @list_options = load_list_options
     @previously_selected_workshop = params["workshop"]
     @previously_selected_type = params["form_type"]
@@ -76,6 +75,14 @@ class RegistrationsController < ApplicationController
             @participant_registrations.push(reg)
         end
       end
+    end
+    print "-------------------------------------------"
+    print @participant_structure
+    print "-------------------------------------------"
+    respond_to do |format|
+        format.html
+        format.csv
+        format.xls
     end
   end
 

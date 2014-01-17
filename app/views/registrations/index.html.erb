@@ -13,7 +13,9 @@
       </dd>
       <dd>
       <%= submit_tag "Update list" %> or
-      <%= link_to('Reset', registrations_path) %>
+      <h2>Export data:</h2>
+        <%= link_to "CSV", registrations_path(format: "csv") %> |
+        <%= link_to "Excel", registrations_path(format: "xls") %>
       </dd>
     </dl>
   <% end %>
