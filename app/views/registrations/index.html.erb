@@ -12,10 +12,7 @@
         <%= select_tag'form_type', options_for_select(@list_options[:form_type], @previously_selected_type)%>
       </dd>
       <dd>
-      <%= submit_tag "Update list" %> or
-      <h2>Export data:</h2>
-        <%= link_to "CSV", registrations_path(format: "csv") %> |
-        <%= link_to "Excel", registrations_path(format: "xls") %>
+      <%= submit_tag "Update List" %>
       </dd>
     </dl>
   <% end %>
@@ -69,4 +66,10 @@
     <% end %>
   </tbody>
 </table>
+<%- params[:format] = "csv"
+-%>
+<%= link_to "Export CSV", registrations_path(params) %> |
+<%- params[:format] = "xls"
+-%>
+<%= link_to "Export Excel", registrations_path(params) %>
 
