@@ -37,7 +37,12 @@
             <td><%= registration["attributes"][element["name"]] %></td>
           <% end %>
           <%=hidden_field_tag registration["id"], '0'%>
-          <td><%= check_box_tag registration["id"], '1', Registration.find(registration["id"]).accepted%></td>
+          <%- accepted_status = false
+          if Registration.find(registration["id"]).accepted
+            accepted_status= Registration.find(registration["id"]).accepted
+          end
+          %>
+          <td><%= check_box_tag registration["id"], '1', accepted_status%></td>
           <td><%= link_to 'Show', registration_path(registration["id"]) %></td>
           <td><%= link_to 'Edit', edit_registration_path(registration["id"]) %></td>
           <td><%= link_to 'Destroy', registration_path(registration["id"]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
