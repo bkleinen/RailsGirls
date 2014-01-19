@@ -121,7 +121,7 @@ class StructureForm
 			for se in @structure_elements
 				if not(se.data["type"] is "checkbox") 
 					se.data["required"] = true
-					form.html.push se.data
+				form.html.push se.data
 		$('#form_preview').empty().dform(form)
 		@update_structure_val()
 
