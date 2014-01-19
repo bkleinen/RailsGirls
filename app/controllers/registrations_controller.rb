@@ -8,7 +8,6 @@ class RegistrationsController < ApplicationController
   # GET /registrations.json
   def index
     @list_options = load_list_options
-    @previously_selected_workshop = params["workshop"]
     @previously_selected_type = params["form_type"]
     workshop = nil
     registrations_data_participant = []
@@ -20,6 +19,10 @@ class RegistrationsController < ApplicationController
       if params["workshop"] != "all"
         workshop = Workshop.find(params["workshop"])
       end
+    end
+
+    if workshop
+      @previously_selected_workshop = workshop.id
     end
 
     if params["workshop"] != "all" and !workshop.nil?
@@ -184,7 +187,7 @@ class RegistrationsController < ApplicationController
       r.save
     end
     params.each do |key, value|
-      if value == "1" || value == "0"
+      if value == "1" || value == "0" || key == "authenticity_token"
         params.delete(key)
       end
     end
