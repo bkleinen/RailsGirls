@@ -19,13 +19,6 @@ class FormsController < ApplicationController
     @structure.push "type"=>"text", "caption"=>"Firstname", "name"=>"firstname", "class"=>"immutable_element"
     @structure.push "type"=>"text", "caption"=>"Lastname", "name"=>"lastname", "class"=>"immutable_element"
     @structure.push "type"=>"text", "caption"=>"E-Mail", "name"=>"email", "class"=>"immutable_element"
-    # keys = Registration.keys.keys
-    # hidden_keys = ["_id", "form_id", "form_type", "authenticity_token", "form_type", "action", "controller"]
-    # keys.each do |attr_name, attr_value|
-    #   unless hidden_keys.include? attr_name
-    #     @structure.push "type"=>"text", "caption"=>attr_name, "name"=>attr_name, "class"=>"immutable_element"
-    #   end
-    # end
   end
 
   # GET /forms/1/edit
@@ -36,13 +29,11 @@ class FormsController < ApplicationController
   def create
     workshop_id = form_params[:workshop_id]
     @workshop = Workshop.find(workshop_id)
-
     if form_params[:type] == "coach"
       @form = CoachForm.new(form_params)
       if @workshop != nil
         @key = SecureRandom.hex
-        @workshop.update_attributes(:coachKey => @key)
-        @workshop.save
+        @workshop.update_attributes!(:coach_key => @key)
       end
     else
       @form = ParticipantForm.new(form_params)
@@ -69,7 +60,7 @@ class FormsController < ApplicationController
   def destroy
     @form.destroy
     if @form.workshop != nil
-      @form.workshop.status = nil
+      @form.workshop.published = false
       @form.workshop.save
     end
     redirect_to forms_url, notice: 'Form was successfully destroyed. Due to this, the corresponding Workshop is no longer published'

@@ -14,7 +14,7 @@ class WorkshopsController < ApplicationController
   def publish
     @workshop = Workshop.find(params[:id])
     if (@workshop.participant_form != nil)
-      @workshop.update_attributes(:status => "published")
+      @workshop.published = true
       @workshop.save
       redirect_to workshops_url, notice: 'Workshop was successfully updated.'
     else
@@ -28,8 +28,7 @@ class WorkshopsController < ApplicationController
     if params[:type] == "coach"
       @form = CoachForm.new
       @key = SecureRandom.hex
-      @workshop.update_attributes(:coachKey => @key)
-      @workshop.save
+      @workshop.update_attributes!(:coach_key => @key)
     else
       @form = ParticipantForm.new
     end
@@ -63,7 +62,10 @@ class WorkshopsController < ApplicationController
   end
 
   def manual_mail_send
-    RegistrationMailer.manual_email(params).deliver
+    mail_template = MailTemplate.create(:name => params[:name], :subject => params[:subject], :text => params[:text])
+    mail_template.workshop = Workshop.find(params[:workshop][:id])
+
+    RegistrationMailer.manual_email(mail_template, get_receiptments_from_params(params)).deliver
     redirect_to workshops_url, notice: 'E-Mail was successfully sent.'
   end
 
@@ -117,5 +119,35 @@ class WorkshopsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def workshop_params
       params.require(:workshop).permit(:name, :date, :description, :venue)
+    end
+
+    def get_receiptments_from_params(params)
+      receipments = []
+      if params["admins"]
+        User.all.each do |user|
+          receipments.push user.email
+        end
+      end
+      if params["participants"]
+        workshop.participant_form.registrations.each do |registration|
+          receipments.push registration.email
+        end
+      end
+      if params["coach"]
+        workshop.coach_form.registrations.each do |registration|
+          receipments.push registration.email
+        end
+      end
+      if params["participants_accepted"]
+        workshop.participant_form.registrations.find_all_by_accepted(true).each do |registration|
+          receipments.push registration.email
+        end
+      end
+      if params["participants_rejected"]
+        workshop.participant_form.registrations.all(:accepted.ne => true).each do |registration|
+          receipments.push registration.email
+        end
+      end
+      receipments
     end
 end

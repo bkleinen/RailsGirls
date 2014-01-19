@@ -36,7 +36,8 @@
           <% @participant_structure.each do |element| %>
             <td><%= registration["attributes"][element["name"]] %></td>
           <% end %>
-<!--            -->
+          <%=hidden_field_tag registration["id"], '0'%>
+          <td><%= check_box_tag registration["id"], '1', Registration.find(registration["id"]).accepted%></td>
           <td><%= link_to 'Show', registration_path(registration["id"]) %></td>
           <td><%= link_to 'Edit', edit_registration_path(registration["id"]) %></td>
           <td><%= link_to 'Destroy', registration_path(registration["id"]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
