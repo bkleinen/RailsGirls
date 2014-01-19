@@ -1,9 +1,10 @@
 class Registration
   include MongoMapper::Document
 
-	key :firstname,		String,   :length => { :maximum => 50 }
-	key :lastname,		String,   :length => { :maximum => 50 }
+	key :firstname,		String,		:length => { :maximum => 50 }
+	key :lastname,		String,		:length => { :maximum => 50 }
 	key :email,			String
+	key :accepted,		Boolean,	:default => false
 
 	validates_presence_of :firstname, :lastname, :email
 	# validate :custom_validation

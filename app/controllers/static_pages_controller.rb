@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
   def home
-  	@workshops = Workshop.all
+  	@workshops = Workshop.find_all_by_published(true)
   end
 end

@@ -15,13 +15,14 @@ class RegistrationsController < ApplicationController
     registrations_data_coach = []
 
     if (!params["workshop"])
-      workshop = Workshop.find_by_status("published")
+      workshop = Workshop.last
     else
       if params["workshop"] != "all"
         workshop = Workshop.find(params["workshop"])
       end
     end
-    if params["workshop"] != "all"
+
+    if params["workshop"] != "all" and !workshop.nil?
       if (workshop.participant_form? && params["form_type"] != "coach")
         registrations_data_participant = workshop.participant_form.registrations
       end
@@ -76,9 +77,6 @@ class RegistrationsController < ApplicationController
         end
       end
     end
-    print "-------------------------------------------"
-    print @participant_structure
-    print "-------------------------------------------"
     respond_to do |format|
         format.html
         format.csv
@@ -120,10 +118,11 @@ class RegistrationsController < ApplicationController
   # GET /registrations/new
   def new
     @registration = Registration.new
-    if params[:type] == 'participant'
-      @form = Workshop.find(params[:id]).participant_form
-    elsif params[:type] == Workshop.find(params[:id]).coachKey
-      @form = Workshop.find(params[:id]).coach_form
+    @workshop = Workshop.find(params[:id])
+    if params[:type] != 'coach'
+      @form = @workshop.participant_form
+    elsif params[:type] == "coach" && params[:coach_key] == Workshop.find(params[:id]).coach_key
+      @form = @workshop.coach_form
     end
   end
 
@@ -143,8 +142,7 @@ class RegistrationsController < ApplicationController
       if @registration.save
         # send email to participant after registration not working jet.
         workshop = @registration.form.workshop
-        mail_text = workshop.mail_template.filter_text(@registration)
-        RegistrationMailer.welcome_email(@registration, mail_text).deliver
+        RegistrationMailer.welcome_email(@registration, workshop.mail_template).deliver
         flash[:success] = "Your registration was successful"
         redirect_to success_reg_path
       else
@@ -177,11 +175,13 @@ class RegistrationsController < ApplicationController
   def accept_registrations
     params.select{ |key, value| value == "1" }.keys.each do |id|
       r = Registration.find(id)
-      r.update_attributes!(:accepted => true)
+      r.accepted = true
+      r.save
     end
     params.select{ |key, value| value == "0" }.keys.each do |id|
       r = Registration.find(id)
-      r.update_attributes!(:accepted => false)
+      r.accepted = false
+      r.save
     end
     params.each do |key, value|
       if value == "1" || value == "0"

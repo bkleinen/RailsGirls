@@ -6,11 +6,11 @@ class Workshop
   key :description,			String
   key :date,				Date
   key :venue,				String
-  key :status,				String
+  key :published,		Boolean
 
   one :mail_template
   one :coach_form
   one :participant_form
-  
+
   timestamps!
 end

@@ -23,8 +23,8 @@
         <td><%= workshop.date %></td>
         <td><%= workshop.description %></td>
         <td><%= workshop.venue %></td>
-        <% if workshop.status != nil %>
-          <td><%= workshop.status %></td>
+        <% if workshop.published%>
+          <td>published</td>
         <% else %>
           <td>private</td>
         <% end %>
@@ -57,8 +57,8 @@
             <% end %>
           <% end %>
 
-          <% if workshop.status == 'published' and workshop.keys.include? "coachKey" %>
-            <%= link_to new_registration_path(:id=>workshop.id, :type=>workshop.coachKey), :title=>"Coach Registration Link" do %><i class="fa fa-arrow-right"></i><% end %>
+          <% if workshop.keys.include? "coach_key" %>
+            <%= link_to new_registration_path(:id=>workshop.id, :type=>"coach",:coach_key=>workshop.coach_key), :title=>"Coach Registration Link" do %><i class="fa fa-arrow-right"></i><% end %>
           <% end %>
 
         </td>
@@ -77,7 +77,7 @@
             <%= link_to workshops_manual_mail_show_path(:id => workshop.id), :title=>'New Mail' do %><i class="fa fa-plus"></i> New<% end %>
         </td>
         <td>
-          <% if workshop.status.nil? and !workshop.participant_form.nil? %>
+          <% if !workshop.published and !workshop.participant_form.nil? %>
             <%= button_to "Publish Workshop", { :controller => "workshops", :action => "publish", :id=>workshop.id} %>
           <% end %>
         </td>

@@ -10,13 +10,18 @@ class MailTemplate
 
   def filter_text(registration)
 	pseudo_tags = {
-		"[registration_firstname]" => registration.firstname,
-		"[registration_lastname]" => registration.lastname,
 		"[workshop_name]" => self.workshop.name,
 		"[workshop_description]" => self.workshop.description,
 		"[workshop_date]" => self.workshop.date.to_s,
 		"[workshop_venue]" => self.workshop.venue
 	}
+
+	if registration
+		pseudo_tags["[registration_firstname]"] = registration.firstname
+		pseudo_tags["[registration_lastname]"] = registration.lastname
+	end
+
+	print pseudo_tags
 
 	result = self.text
 
