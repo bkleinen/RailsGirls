@@ -178,6 +178,9 @@ class RegistrationsController < ApplicationController
   def accept_registrations
     params.select{ |key, value| value == "1" }.keys.each do |id|
       r = Registration.find(id)
+      unless r.accepted
+        r.send_to_global_server
+      end
       r.accepted = true
       r.save
     end
