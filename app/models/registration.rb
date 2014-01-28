@@ -31,6 +31,8 @@ class Registration
 			'firstname' => self.firstname,
 			'lastname' => self.lastname,
 			'email' => self.email,
+			'country' => ApplicationController.helpers.settings.country,
+			'city' => ApplicationController.helpers.settings.city
 		}
 
 		response = Net::HTTP.new(uri.host, uri.port).start do |http| 
