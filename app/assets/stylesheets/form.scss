@@ -1,6 +1,6 @@
+$lightGray: #999;
 
 #form_preview {
-	
 	&.editable {
 		label {
 			cursor: pointer;
@@ -27,4 +27,26 @@
 .delete_element {
 	display: block;
 	margin: -10px 0 10px 0;
+}
+
+.form_preview_card{
+	a{
+		color: #000;
+		&:hover{
+			text-decoration: none;
+		}
+	}
+	width: 220px;
+	height: 250px;
+	float: left;
+	padding: 10px;
+	border: 1px solid #000;
+	margin: 10px;
+	ul{
+		padding-left: 17px;
+		overflow: auto;
+	}
+	&:hover{
+		background-color: $lightGray;
+	}
 }

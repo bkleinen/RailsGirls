@@ -1,0 +1,18 @@
+<% provide(:title, 'Workshop') %>
+
+<table>
+  <thead>
+    <tr>
+      <% if @workshop != nil
+         @workshop.attributes.each do |attr_name, attr_value| %>
+          <% if attr_name != '_id' and attr_name != 'authenticity_token' %>
+            <p>
+              <strong><%= attr_name %>: </strong><%= attr_value %>
+            </p>
+          <% end %>
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+</table>
+<%= link_to 'Back', :back %>

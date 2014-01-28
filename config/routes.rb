@@ -13,7 +13,8 @@ Railsgirls::Application.routes.draw do
   get 'forms/:id' => 'forms#show', as: :participant_form
   get 'forms/:type/new' => 'forms#new', as: :new_form
   resources :forms
-  post 'workshops/publish' => 'workshops#publish'
+  get 'workshops/:id/publish' => 'workshops#publish'
+  get 'workshops/:id/unpublish' => 'workshops#unpublish'
   post 'workshops/addForm' => 'workshops#addForm'
   post 'workshops/add_mail_template' => 'workshops#add_mail_template'
   post 'workshops/manual_mail_send' => 'workshops#manual_mail_send'

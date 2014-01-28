@@ -9,15 +9,24 @@ $railsRed: #d3360b;
 .navbar{
   background-color: $railsRed;
   min-height: inherit;
-  a{
-    color: $white;
-    font-weight: normal; 
+  ul{
+    li{
+      float: right;
+
+      a{
+        color: $white;
+        font-weight: normal; 
+        &:hover{
+          color: #000000;
+        }
+      }
+    }
   }
   img{
     margin-top: 6px;
     height: 25px;
   }
-} 
+}
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -70,20 +79,6 @@ h2 {
 p {
   font-size: 1.1em;
   line-height: 1.7em;
-}
-
-/* header */
-
-ul{
-  li{
-    float: right;
-
-    a{
-      &:hover{
-        color: #000000;
-      }
-    }
-  }
 }
 
 /* footer */

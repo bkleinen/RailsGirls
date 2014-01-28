@@ -1,31 +1,41 @@
+<% workshop = Workshop.find(params[:id]) 
+  i = 0
+%>
 <h1>Listing forms</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<% @forms.each do |form| %>
+  <%= link_to form_path(form, :workshop_id=>params[:id], :type=>params[:type]), :title=>"Show Participant Form" do %><div class = "form_preview_card">
+    <strong>Previously used for:</strong><br>
+    <span>Name: <%=workshop.name%></span><br>
+    <span>Date: <%=workshop.date%></span><br>
+    <ul>
+      <% if @structure[i].count >= 4 %>
+        <li><%=@structure[i][3]["caption"][0..45]%>
+        <%if @structure[i][3]["caption"].length > 45%>
+            ...
+        <%end%>
+        </li>
+      <% end %>
+      <% if @structure[i].count >= 5 %>
+        <li><%=@structure[i][4]["caption"][0..45]%>
+        <%if @structure[i][4]["caption"].length > 45%>
+            ...
+        <%end%>
+        </li>
+      <% end %>
+      <% if @structure[i].count >= 6 %>
+        <li><%=@structure[i][5]["caption"][0..45]%>
+        <%if @structure[i][5]["caption"].length > 45%>
+            ...
+        <%end%>
+        </li>
+      <% end %>
+    </ul>
+    <span>Form has <%=@structure[i].count%> inputfields.</span>
+    <br><%= link_to form_path(form), method: :delete, data: { confirm: 'Are you sure?' }, :title=>"Destroy" do %><i class="fa fa-trash-o"></i><% end %>
 
-  <tbody>
-    <% @forms.each do |form| %>
-        <script type="text/javascript">
-          structure_to_render = <%=form.structure.html_safe %>;
-        </script>
-        <form id="form_preview"></form>
-        <tr>
-          <td><%= link_to 'Show', form %></td>
-          <td><%= link_to 'Edit', edit_form_path(form) %></td>
-          <td><%= link_to 'Destroy', form_path(form), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% if params[:id] != nil %>
-            <td><%= button_to "Add to Workshop", { :controller => "workshops", :action => "addForm", :id=>form.id, :type=>params[:type], :workshop_id=>params[:id]}%></td>
-          <% end %>
-        </tr>
-     
-    <% end %>
-  </tbody>
-</table>
+  </div>
+  <% end %>
+  <% i+=1 %>
+<% end %>
 
-<br>

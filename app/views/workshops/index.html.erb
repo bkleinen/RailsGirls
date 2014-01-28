@@ -7,12 +7,7 @@
       <th>Date</th>
       <th>Description</th>
       <th>Venue</th>
-      <th>Status</th>
       <th class="settings">Edit</th>
-      <th class="settings">Participant Form</th>
-      <th class="settings">Coach Form</th>
-      <th class="settings">Automatic E-Mail after Reg.</th>
-      <th class="settings">Manual E-Mail</th>
     </tr>
   </thead>
 
@@ -23,64 +18,12 @@
         <td><%= workshop.date %></td>
         <td><%= workshop.description %></td>
         <td><%= workshop.venue %></td>
-        <% if workshop.published%>
-          <td>published</td>
-        <% else %>
-          <td>private</td>
-        <% end %>
-
         <td>
           <%= link_to edit_workshop_path(workshop), :title=>"Edit" do %><i class="fa fa-pencil"></i><% end %>
-          <%= link_to workshop, method: :delete, data: { confirm: 'Are you sure?' }, :title=>"Destroy" do %><i class="fa fa-trash-o"></i><% end %>
-        </td>
-
-        <td>
-          <% if workshop.participant_form != nil %>
-            <%= link_to form_path(workshop.participant_form.id), :title=>"Show Participant Form" do %><i class="fa fa-eye"></i><% end %><br />
-            <%= link_to new_registration_path(:id=>workshop.id, :type=>:participant), :title=>"Participant Registration Link" do %><i class="fa fa-arrow-right"></i><% end %>
-          <% else %>
-            <%= link_to new_form_path(:type => :participant, :workshop_id => workshop.id), :title=>'Add Participant Form' do %><i class="fa fa-plus"></i><br /><% end %>
-            <% if @forms.count > 0 %>
-              <%= link_to forms_path(:id=>workshop.id, :type=>"participant"), :title=>'Add excisting Participant Form' do %><i class="fa fa-plus"></i> Existing<% end %>
-            <% end %>
+          <%= link_to workshop, method: :delete, data: { confirm: 'Are you sure?' }, :title=>"Destroy" do %><i class="fa fa-trash-o"></i>
           <% end %>
         </td>
 
-        <td>
-          <% if workshop.coach_form != nil %>
-            <%= link_to form_path(workshop.coach_form.id), :title=>"Show Coach Form" do %><i class="fa fa-eye"></i><% end %><br />
-          <% else %>
-            <%= link_to new_form_path(:type => :coach, :workshop_id => workshop.id), :title=>'Add Coach Form' do %>
-            <i class="fa fa-plus"></i><% end %><br />
-            <% if @forms.count > 0 %>
-              <%= link_to forms_path(:id=>workshop.id, :type=>"coach"), :title=>'Add existing Coach Form' do %><i class="fa fa-plus"></i> Existing<% end %>
-            <% end %>
-          <% end %>
-
-          <% if workshop.keys.include? "coach_key" %>
-            <%= link_to new_registration_path(:id=>workshop.id, :type=>"coach",:coach_key=>workshop.coach_key), :title=>"Coach Registration Link" do %><i class="fa fa-arrow-right"></i><% end %>
-          <% end %>
-
-        </td>
-
-        <td>
-          <% if workshop.mail_template != nil %>
-            <%= link_to edit_mail_template_path(workshop.mail_template.id), :title=>"Edit Mail Template" do %><i class="fa fa-pencil"></i><% end %><br />
-          <% else %>
-            <%= link_to new_mail_template_path(:workshop_id => workshop.id), :title=>'Add Mail Template' do %><i class="fa fa-plus"></i><br /><% end %>
-            <% if @mail_templates.count > 0 %>
-              <%= link_to mail_templates_path(:workshop_id => workshop.id), :title=>'Add excisting Mail Template' do %><i class="fa fa-plus"></i> Existing<% end %>
-            <% end %>
-          <% end %>
-        </td>
-        <td>
-            <%= link_to workshops_manual_mail_show_path(:id => workshop.id), :title=>'New Mail' do %><i class="fa fa-plus"></i> New<% end %>
-        </td>
-        <td>
-          <% if !workshop.published and !workshop.participant_form.nil? %>
-            <%= button_to "Publish Workshop", { :controller => "workshops", :action => "publish", :id=>workshop.id} %>
-          <% end %>
-        </td>
       </tr>
     <% end %>
   </tbody>

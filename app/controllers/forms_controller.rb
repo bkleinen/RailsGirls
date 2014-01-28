@@ -6,6 +6,10 @@ class FormsController < ApplicationController
   # GET /forms
   def index
     @forms = Form.all
+    @structure = []
+    @forms.each do |form|
+      @structure.push JSON.parse form.structure
+    end
   end
 
   # GET /forms/1

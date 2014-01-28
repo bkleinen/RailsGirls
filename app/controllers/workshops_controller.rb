@@ -16,10 +16,17 @@ class WorkshopsController < ApplicationController
     if (@workshop.participant_form != nil)
       @workshop.published = true
       @workshop.save
-      redirect_to workshops_url, notice: 'Workshop was successfully updated.'
+      redirect_to edit_workshop_path(@workshop), notice: 'Workshop was successfully published.'
     else
-      redirect_to workshops_url, notice: 'Workshop could not be published. Please create a participant form!'
+      redirect_to edit_workshop_path(@workshop), notice: 'Workshop could not be published. Please create a participant form!'
     end
+  end
+
+  def unpublish
+    @workshop = Workshop.find(params[:id])
+    @workshop.published = false
+    @workshop.save
+    redirect_to edit_workshop_path(@workshop), notice: 'Workshop was successfully unpublished.'
   end
 
   def addForm
